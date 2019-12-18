@@ -1,6 +1,6 @@
 package bundang.exp.config;
 
-import com.carepet.server.model.client.UserPrincipal;
+import bundang.exp.user.security.UserPrincipal;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;

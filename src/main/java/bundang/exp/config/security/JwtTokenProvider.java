@@ -1,7 +1,6 @@
 package bundang.exp.config.security;
 
 import bundang.exp.user.security.UserPrincipal;
-import com.carepet.server.model.client.UserPrincipal;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
