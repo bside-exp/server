@@ -1,5 +1,6 @@
 package bundang.exp.user;
 
+import bundang.exp.common.ExpException;
 import bundang.exp.config.security.JwtTokenProvider;
 import bundang.exp.role.Role;
 import bundang.exp.role.RoleRepository;
@@ -35,7 +36,7 @@ public class UserService {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
 
-    public ResponseEntity<User> join(JoinDto joinDto) {
+    public User join(JoinDto joinDto) throws ExpException {
         //TODO: 이메일 정규식 테스트
 //        String regExp = "^[a-zA-Z0-9._$%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
 //        if(joinDto.getUsername().matches(regExp)) {
@@ -47,14 +48,15 @@ public class UserService {
 
         log.info("role repository = {}", roleRepository.count());
 
-        Role userRole = roleRepository.findByName(Roles.ROLE_USER).orElseThrow(() -> new RuntimeException("User Role not set"));
+        Role userRole = roleRepository.findByName(Roles.ROLE_USER)
+                .orElseThrow(() -> new ExpException("User Role not set"));
         newUser.setRoles(Collections.singletonList(userRole));
         userRepository.save(newUser);
 
-        return ResponseEntity.ok(newUser);
+        return newUser;
     }
 
-    public ResponseEntity login(LoginDto loginDto) {
+    public String login(LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginDto.getUsername(),
@@ -65,7 +67,7 @@ public class UserService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtTokenProvider.generateToken(authentication);
 
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        return jwt;
     }
 
 }
