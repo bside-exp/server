@@ -33,13 +33,27 @@ const welcomeStyle = {
     whiteSpace: "nowrap"
 }
 
-const emailInput = {
-    position: "absolute",
-    top: "230px"
-}
-
 export default class Join extends Component {
 
+    state = {
+        email: "",
+        password: "",
+        passwordCheck: "",
+        nickname: "",
+        termAgree: false,
+        checked: false
+    }
+
+    emailChange = (name, domain) => {
+        this.setState({
+            ...this.state,
+            email: name + '@' + domain
+        })
+    }
+
+    log = () => {
+        console.log(this.state.email)
+    }
     render() {
 
         return(
@@ -47,7 +61,7 @@ export default class Join extends Component {
                 <Nav/>
                 <img src="/image/logo.svg" style={logoStyle}/>
                 <span style={welcomeStyle}>경험공유에 오신 것을 환영합니다.</span>
-                <EamilInput/>
+                <EamilInput onChange={this.emailChange}/>
                 <Password/>
                 <PasswordCheck/>
                 <Nickname/>

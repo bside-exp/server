@@ -25,6 +25,7 @@ const underlineStyle = {
 }
 
 const underlineSelector = {
+    cursor: "pointer",
     position: "relative",
     borderLeftWidth: "0px",
     borderRightWidth: "0px",
@@ -58,16 +59,42 @@ const arrow = {
 
 export default class EamilInput extends Component {
 
-    render() {
-        console.log(styles.input)
+    state = {
+        name: '',
+        domain: '이메일 선택'
+    }
 
+    onNameChange = (e) => {
+        this.setState({
+            ...this.state,
+            name: e.target.value
+        })
+
+        this.props.onChange(this.state.name, this.state.domain)
+    }
+
+    onDomainChange = (e) => {
+        this.setState({
+            ...this.state,
+            domain: e.target.value
+        })
+
+        this.props.onChange(this.state.name, this.state.domain)
+    }
+
+    emailSelectPopup = () => {
+
+    }
+
+    render() {
         return (
             <Fragment>
                 <form style={containerStyle}>
-                    <input type="text" className={styles.textInput} placeholder="이메일" style={underlineStyle}/>
+                    <input type="text" className={styles.textInput}
+                           placeholder="이메일" style={underlineStyle} onChange={this.onNameChange}/>
                     <span style={atStyle}>@</span>
-                    <div style={underlineSelector}>
-                        <span style={textInSelector}>이메일 선택</span>
+                    <div style={underlineSelector} onClick={this.emailSelectPopup}>
+                        <span style={textInSelector}>{this.state.domain}</span>
                         <img src="/image/down-arrow.svg" style={arrow}/>
                     </div>
                 </form>
