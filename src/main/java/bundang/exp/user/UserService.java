@@ -40,11 +40,11 @@ public class UserService {
 
         if(this.duplicateUsername(joinDto.getUsername())) {
             throw new IllegalArgumentException("중복된 이메일입니다.");
-        };
+        }
 
-        if(this.duplicateNickName(joinDto.getNickName())) {
+        if(this.duplicateNickName(joinDto.getNickname())) {
             throw new IllegalArgumentException("중복된 닉네임입니다.");
-        };
+        }
 
         User newUser = modelMapper.map(joinDto, User.class);
         newUser.setPassword(passwordEncoder.encode(joinDto.getPassword()));
