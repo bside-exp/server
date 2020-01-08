@@ -37,11 +37,14 @@ public class UserService {
     private final JwtTokenProvider jwtTokenProvider;
 
     public User join(JoinDto joinDto) throws ExpException {
-        //TODO: 이메일 정규식 테스트
-//        String regExp = "^[a-zA-Z0-9._$%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
-//        if(joinDto.getUsername().matches(regExp)) {
-//            new RuntimeException("이메일 형식이 올바르지 않습니다.");
-//        }
+
+        if(this.duplicateUsername(joinDto.getUsername())) {
+            throw new IllegalArgumentException("중복된 이메일입니다.");
+        }
+
+        if(this.duplicateNickName(joinDto.getNickname())) {
+            throw new IllegalArgumentException("중복된 닉네임입니다.");
+        }
 
         User newUser = modelMapper.map(joinDto, User.class);
         newUser.setPassword(passwordEncoder.encode(joinDto.getPassword()));
@@ -54,6 +57,14 @@ public class UserService {
         userRepository.save(newUser);
 
         return newUser;
+    }
+
+    public boolean duplicateUsername(String email) {
+        return userRepository.findByUsername(email).isPresent();
+    }
+
+    public boolean duplicateNickName(String nickName) {
+        return userRepository.findByNickName(nickName).isPresent();
     }
 
     public String login(LoginDto loginDto) {
