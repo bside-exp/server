@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -34,13 +37,23 @@ public class AuthController {
     }
 
     @PostMapping("/user/duplicate/email")
-    public ResponseEntity<Boolean> isDuplicateEmail(@RequestBody String email) {
-        return ResponseEntity.ok(service.duplicateUsername(email));
+    public ResponseEntity<Boolean> isDuplicateEmail(@RequestBody String email) throws ExpException {
+        try {
+            String emailDecoded = URLDecoder.decode(email, StandardCharsets.UTF_8.name()).replace("=", "");
+            return ResponseEntity.ok(service.duplicateUsername(emailDecoded));
+        } catch (UnsupportedEncodingException e) {
+            throw new ExpException(e.getMessage());
+        }
     }
 
     @PostMapping("/user/duplicate/nickname")
-    public ResponseEntity<Boolean> isDuplicateNickname(@RequestBody String nickname) {
-        return ResponseEntity.ok(service.duplicateNickName(nickname));
+    public ResponseEntity<Boolean> isDuplicateNickname(@RequestBody String nickname) throws ExpException {
+        try {
+            String nicknameDecoded = URLDecoder.decode(nickname, StandardCharsets.UTF_8.name()).replace("=", "");
+            return ResponseEntity.ok(service.duplicateNickName(nicknameDecoded));
+        } catch (UnsupportedEncodingException e) {
+            throw new ExpException(e.getMessage());
+        }
     }
 
 
