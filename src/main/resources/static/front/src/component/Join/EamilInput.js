@@ -24,33 +24,6 @@ const underlineStyle = {
     placeholder: "#999999"
 }
 
-const underlineSelector = {
-    cursor: "pointer",
-    position: "relative",
-    borderLeftWidth: "0px",
-    borderRightWidth: "0px",
-    borderTopWidth: "0px",
-    borderBottomWidth: "1px",
-    borderBottom: "1px solid #e0e0e1",
-    paddingBottom: "15px",
-    backgroundColor: "#FFFFFF",
-    borderColor: "#e0e0e1",
-    display: "inline-block",
-    width: "150px",
-}
-
-const textInSelector = {
-    fontFamily: "AppleSDGothicNeo",
-    fontSize: "16px",
-    letterSpacing: "-0.4",
-    color: "#999999"
-}
-
-const atStyle = {
-    paddingRight: "11px",
-    paddingLeft: "10px"
-}
-
 const arrow = {
     position: "absolute",
     left: "137px",
@@ -60,8 +33,7 @@ const arrow = {
 export default class EamilInput extends Component {
 
     state = {
-        name: '',
-        domain: '이메일 선택'
+        name: ''
     }
 
     onNameChange = (e) => {
@@ -73,30 +45,12 @@ export default class EamilInput extends Component {
         this.props.onChange(this.state.name, this.state.domain)
     }
 
-    onDomainChange = (e) => {
-        this.setState({
-            ...this.state,
-            domain: e.target.value
-        })
-
-        this.props.onChange(this.state.name, this.state.domain)
-    }
-
-    emailSelectPopup = () => {
-
-    }
-
     render() {
         return (
             <Fragment>
-                <form style={containerStyle}>
+                <form className={styles.container}>
                     <input type="text" className={styles.textInput}
-                           placeholder="이메일" style={underlineStyle} onChange={this.onNameChange}/>
-                    <span style={atStyle}>@</span>
-                    <div style={underlineSelector} onClick={this.emailSelectPopup}>
-                        <span style={textInSelector}>{this.state.domain}</span>
-                        <img src="/image/down-arrow.svg" style={arrow}/>
-                    </div>
+                           placeholder="이메일" onChange={this.onNameChange}/>
                 </form>
             </Fragment>
         )

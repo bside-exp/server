@@ -6,6 +6,7 @@ import PasswordCheck from "./PasswordCheck";
 import Nickname from "./Nickname";
 import Term from "./Term";
 import RectBtn from "./RectBtn";
+import styles from './index.module.css'
 
 const logoStyle = {
     width: "37px",
@@ -57,7 +58,7 @@ export default class Join extends Component {
     render() {
 
         return(
-            <div >
+            <div className={styles.container}>
                 <Nav/>
                 <img src="/image/logo.svg" style={logoStyle}/>
                 <span style={welcomeStyle}>경험공유에 오신 것을 환영합니다.</span>

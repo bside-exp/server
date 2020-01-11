@@ -1,0 +1,7 @@
+.container {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background-color: #FFFFFF;
+    display: inline-block;
+}
