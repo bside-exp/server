@@ -42,19 +42,48 @@ export default class Join extends Component {
         passwordCheck: "",
         nickname: "",
         termAgree: false,
-        checked: false
+        checked: false,
+        isPasswordCheckSame: true,
+        isPasswordConform: true,
+        emailDuplicate: false,
+        nicknameDuplicate: false
     }
 
-    emailChange = (name, domain) => {
+    emailChange = (email) => {
         this.setState({
             ...this.state,
-            email: name + '@' + domain
+            email: email
         })
     }
 
-    log = () => {
-        console.log(this.state.email)
+    passwordChange = (password) => {
+        const isSame = this.state.passwordCheck == password || this.state.passwordCheck.length == 0
+        const pattern = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,10}$/
+        const conform = password.length == 0 || pattern.test(password)
+        this.setState({
+            ...this.state,
+            password: password,
+            isPasswordCheckSame: isSame,
+            isPasswordConform: conform
+        })
     }
+
+    passwordCheckChange = (passwordCheck) => {
+        const isSame = passwordCheck.length == 0 || this.state.password == passwordCheck
+        this.setState({
+            ...this.state,
+            passwordCheck: passwordCheck,
+            isPasswordCheckSame: isSame
+        })
+    }
+
+    nicknameChange = (nickname) => {
+        this.setState({
+            ...this.state,
+            nickname: nickname
+        })
+    }
+
     render() {
 
         return(
@@ -63,9 +92,9 @@ export default class Join extends Component {
                 <img src="/image/logo.svg" style={logoStyle}/>
                 <span style={welcomeStyle}>경험공유에 오신 것을 환영합니다.</span>
                 <EamilInput onChange={this.emailChange}/>
-                <Password/>
-                <PasswordCheck/>
-                <Nickname/>
+                <Password onChange={this.passwordChange} conform={this.state.isPasswordConform}/>
+                <PasswordCheck onChange={this.passwordCheckChange} same={this.state.isPasswordCheckSame}/>
+                <Nickname onChange={this.nicknameChange}/>
                 <Term/>
                 <RectBtn/>
             </div>

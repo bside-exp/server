@@ -3,16 +3,16 @@ import styles from './Nickname.module.css'
 
 export default class Nickname extends Component{
 
+    onChange = (e) => {
+        this.props.onChange(e.target.value)
+    }
+
     render() {
         return(
             <Fragment>
                 <form className={styles.container}>
-                    <input className={styles.textInput} type="text" placeholder="닉네임"/>
-                    <div className={styles.checkBtn}>
-                        <span className={styles.checkBtnText}>
-                            중복확인
-                        </span>
-                    </div>
+                    <input className={styles.textInput} type="text"
+                           placeholder="닉네임" onChange={this.onChange}/>
                 </form>
             </Fragment>
         )

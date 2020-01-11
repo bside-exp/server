@@ -32,17 +32,8 @@ const arrow = {
 
 export default class EamilInput extends Component {
 
-    state = {
-        name: ''
-    }
-
     onNameChange = (e) => {
-        this.setState({
-            ...this.state,
-            name: e.target.value
-        })
-
-        this.props.onChange(this.state.name, this.state.domain)
+        this.props.onChange(e.target.value)
     }
 
     render() {

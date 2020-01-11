@@ -4,7 +4,7 @@ spring:
     username: user
     password: user
     url: jdbc:mysql://localhost:3306/exp?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
-    initialization-mode: always
+    initialization-mode: never
     # 첫 실행시 awalys, 그 후는 never로 변경하여 실행해주세요.
 
   jpa:
