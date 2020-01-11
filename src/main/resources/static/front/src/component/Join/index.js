@@ -9,31 +9,6 @@ import RectBtn from "./RectBtn";
 import styles from './index.module.css'
 import axios from 'axios'
 
-const logoStyle = {
-    width: "37px",
-    height: "28px",
-    objectFit: "contain",
-    position: "absolute",
-    top: "114px",
-    right: "169px"
-}
-
-const welcomeStyle = {
-    width: "256px",
-    height: "28px",
-    fontFamily: "AppleSDGothicNeo",
-    fontSize: "20px",
-    fontWeight: "normal",
-    fontStretch: "normal",
-    fontStyle: "normal",
-    lineHeight: "1.4",
-    letterSpacing: "-0.4px",
-    color: "#4a65f6",
-    position: "absolute",
-    top : "152px",
-    left: "60px",
-    whiteSpace: "nowrap"
-}
 
 export default class Join extends Component {
 
@@ -93,6 +68,27 @@ export default class Join extends Component {
         })
     }
 
+    deleteNickname = () => {
+        this.setState({
+            ...this.state,
+            nickname: ''
+        })
+    }
+
+    deletePassword = () => {
+        this.setState({
+            ...this.state,
+            password: ''
+        })
+    }
+
+    deletePasswordCheck = () => {
+        this.setState({
+            ...this.state,
+            passwordCheck: ''
+        })
+    }
+
     submit = () => {
         axios.post("/api/auth/user/duplicate/email", this.state.email)
             .then(response => {
@@ -128,12 +124,12 @@ export default class Join extends Component {
         return(
             <div className={styles.container}>
                 <Nav/>
-                <img src="/image/logo.svg" style={logoStyle}/>
-                <span style={welcomeStyle}>경험공유에 오신 것을 환영합니다.</span>
-                <EamilInput onChange={this.emailChange} check={this.state.emailDuplicate}/>
-                <Password onChange={this.passwordChange} conform={this.state.isPasswordConform}/>
-                <PasswordCheck onChange={this.passwordCheckChange} same={this.state.isPasswordCheckSame}/>
-                <Nickname onChange={this.nicknameChange} check={this.state.nicknameDuplicate}/>
+                <img src="/image/logo.svg" className={styles.logo}/>
+                <span className={styles.welcome}>경험공유에 오신 것을 환영합니다.</span>
+                <EamilInput onChange={this.emailChange} check={this.state.emailDuplicate} delete={this.deleteEmail}/>
+                <Password onChange={this.passwordChange} conform={this.state.isPasswordConform} delete={this.deletePassword}/>
+                <PasswordCheck onChange={this.passwordCheckChange} same={this.state.isPasswordCheckSame} delete={this.deletePasswordCheck}/>
+                <Nickname onChange={this.nicknameChange} check={this.state.nicknameDuplicate} delete={this.deleteNickname}/>
                 <Term onClick={this.termAgree} agree={this.state.termAgree}/>
                 <RectBtn onClick={this.submit} state={this.state}/>
             </div>

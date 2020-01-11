@@ -29,6 +29,17 @@
     border-color: #ff0d12;
 }
 
+.x {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+    position: absolute;
+    left: 323px;
+    top: 9px;
+    cursor: pointer;
+    cursor: pointer;
+}
+
 .error {
     position: relative;
     font-family: AppleSDGothicNeo;

@@ -33,6 +33,16 @@
     left: 20px;
 }
 
+.x {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+    position: absolute;
+    left: 323px;
+    top: 9px;
+    cursor: pointer;
+    cursor: pointer;
+}
 .checkBtn {
     position: absolute;
     left: 259px;
