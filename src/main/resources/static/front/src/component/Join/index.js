@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import Nav from "../Nav";
 import EamilInput from "./EamilInput";
 import Password from "./Password";
@@ -7,6 +7,7 @@ import Nickname from "./Nickname";
 import Term from "./Term";
 import RectBtn from "./RectBtn";
 import styles from './index.module.css'
+import axios from 'axios'
 
 const logoStyle = {
     width: "37px",
@@ -84,6 +85,44 @@ export default class Join extends Component {
         })
     }
 
+    termAgree = () => {
+        const agree = !this.state.termAgree
+        this.setState({
+            ...this.state,
+            termAgree: agree
+        })
+    }
+
+    submit = () => {
+        axios.post("/api/auth/user/duplicate/email", this.state.email)
+            .then(response => {
+                this.setState({
+                    ...this.state,
+                    emailDuplicate: response.data
+                })
+
+                axios.post("/api/auth/user/duplicate/nickname", this.state.nickname)
+                    .then(response => {
+                        this.setState({
+                            ...this.state,
+                            nicknameDuplicate: response.data
+                        })
+                        if (!this.state.emailDuplicate && !this.state.nicknameDuplicate) {
+                            axios.post("/api/auth/join",
+                                {
+                                    username: this.state.email,
+                                    nickname: this.state.nickname,
+                                    password: this.state.password
+                                }).then(response => {
+                                console.log(response)
+                            })
+                        }
+                    })
+            })
+
+
+    }
+
     render() {
 
         return(
@@ -91,12 +130,12 @@ export default class Join extends Component {
                 <Nav/>
                 <img src="/image/logo.svg" style={logoStyle}/>
                 <span style={welcomeStyle}>경험공유에 오신 것을 환영합니다.</span>
-                <EamilInput onChange={this.emailChange}/>
+                <EamilInput onChange={this.emailChange} check={this.state.emailDuplicate}/>
                 <Password onChange={this.passwordChange} conform={this.state.isPasswordConform}/>
                 <PasswordCheck onChange={this.passwordCheckChange} same={this.state.isPasswordCheckSame}/>
-                <Nickname onChange={this.nicknameChange}/>
-                <Term/>
-                <RectBtn/>
+                <Nickname onChange={this.nicknameChange} check={this.state.nicknameDuplicate}/>
+                <Term onClick={this.termAgree} agree={this.state.termAgree}/>
+                <RectBtn onClick={this.submit} state={this.state}/>
             </div>
         )
     }

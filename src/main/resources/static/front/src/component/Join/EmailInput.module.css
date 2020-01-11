@@ -24,3 +24,20 @@
     border-color: #e0e0e1;
     placeholder: #999999
 }
+
+.textInput.duplicate {
+    border-color: #ff0d12;
+}
+
+.error {
+    position: relative;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.33px;
+    color: #ff0d12;
+    text-align: left;
+}

@@ -7,6 +7,13 @@
     left: 0px;
     text-align: center;
     display: table;
+    pointer-events: none;
+}
+
+.btn.checked {
+    cursor: pointer;
+    pointer-events: auto;
+    background-color: #4a65f6;
 }
 
 .btnText {

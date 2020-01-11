@@ -14,6 +14,9 @@
     border-color: #e0e0e1;
 }
 
+.textInput.duplicate {
+    border-color: #ff0d12;
+}
 .eyeInText {
     width: 17px;
     height: 12px;
@@ -60,4 +63,17 @@
     box-sizing: border-box;
     display: inline-block;
     vertical-align: middle;
+}
+
+.error {
+    position: relative;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.33px;
+    color: #ff0d12;
+    text-align: left;
 }

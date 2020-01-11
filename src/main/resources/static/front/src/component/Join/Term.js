@@ -1,13 +1,13 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import styles from './Term.module.css'
 
 export default class Term extends Component {
     render() {
         return (
             <div className={styles.container}>
-                <div className={[styles.agreeContainer, styles.inlineBlock].join(' ')}>
-                    <div className={styles.circle}/>
-                    <span className={styles.termAgree}>
+                <div className={[styles.agreeContainer, styles.inlineBlock].join(' ')} onClick={this.props.onClick}>
+                    <div className={this.props.agree ? [styles.circle, styles.agree].join(' ') : styles.circle}/>
+                    <span className={this.props.agree ? [styles.termAgree, styles.agree].join(' ') : styles.termAgree}>
                     약관 전체 동의
                     </span>
                 </div>
