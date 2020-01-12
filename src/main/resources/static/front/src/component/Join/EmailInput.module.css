@@ -1,0 +1,54 @@
+.textInput::placeholder{
+    color: #999999;
+}
+
+.container {
+    float: left;
+    position: absolute;
+    top: 230px;
+    left: 20px;
+}
+
+.textInput {
+    width: 335px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 1px;
+    padding-bottom: 15px;
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    letter-spacing: -0.4px;
+    background-color: #FFFFFF;
+    font-color: #999999;
+    border-color: #e0e0e1;
+    placeholder: #999999
+}
+
+.textInput.duplicate {
+    border-color: #ff0d12;
+}
+
+.x {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+    position: absolute;
+    left: 323px;
+    top: 9px;
+    cursor: pointer;
+    cursor: pointer;
+}
+
+.error {
+    position: relative;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.33px;
+    color: #ff0d12;
+    text-align: left;
+}

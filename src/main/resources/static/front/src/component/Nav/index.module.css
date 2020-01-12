@@ -1,0 +1,47 @@
+.nav {
+    height: 44px;
+    left: 0px;
+    width: 100%;
+    position: absolute;
+    top: 44px;
+    box-sizing: border-box;
+}
+
+.rightBtn img {
+    width: 20px;
+    height: 15.5px;
+    object-fit: contain;
+    border-radius: 0.8px;
+    position: absolute;
+    right: 16px;
+    top: 16px
+}
+
+.rightBtn {
+    width: 60px;
+    height: 100%;
+    display: inline-block;
+}
+
+
+.leftBtn {
+    width: 60px;
+    height: 100%;
+    display: inline-block;
+}
+
+.title {
+    width: 255px;
+    height: 100%;
+    position: relative;
+    top: 0px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.title .text {
+    position: relative;
+    top: 14px;
+}
+

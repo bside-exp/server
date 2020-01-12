@@ -1,0 +1,78 @@
+.container {
+    position: absolute;
+    top: 510px;
+    left: 0px;
+    text-align: left;
+}
+
+.inlineBlock {
+    display: inline;
+}
+
+.agreeContainer {
+    width: 200px;
+    position: absolute;
+    left: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.termViewContainer {
+    width: 200px;
+    position: absolute;
+    left: 297px;
+    cursor: pointer;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    background-color: #aeaeaf;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.circle.agree {
+    background-color: #4a65f6;
+}
+
+.termAgree {
+    width: 89px;
+    height: 19px;
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    color: #999999;
+    position: relative;
+    left: 6px;
+}
+
+.termAgree.agree {
+    color: #4a65f6;
+}
+
+.termView {
+    width: 47px;
+    height: 17px;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: right;
+    color: #000000;
+}
+
+.termViewImg {
+    position: relative;
+    left: 2px;
+    bottom: 0px;
+}

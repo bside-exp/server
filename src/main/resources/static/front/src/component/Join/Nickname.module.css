@@ -1,0 +1,89 @@
+.textInput::placeholder {
+    color: #999999;
+}
+.textInput {
+    width: 335px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 1px;
+    padding-bottom: 15px;
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    letter-spacing: -0.4px;
+    border-color: #e0e0e1;
+}
+
+.textInput.duplicate {
+    border-color: #ff0d12;
+}
+.eyeInText {
+    width: 17px;
+    height: 12px;
+    object-fit: contain;
+    position: absolute;
+    left: 318px;
+    bottom: 17px;
+
+}
+
+.container {
+    position: absolute;
+    top: 440px;
+    left: 20px;
+}
+
+.x {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+    position: absolute;
+    left: 323px;
+    top: 9px;
+    cursor: pointer;
+    cursor: pointer;
+}
+.checkBtn {
+    position: absolute;
+    left: 259px;
+    bottom: 11px;
+    width: 76px;
+    height: 30px;
+    opacity: 0.5;
+    border-radius: 15px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.12);
+    border: solid 1px #e6e7ea;
+    background-color: #ffffff;
+    color: #999999;
+    text-align: center;
+    margin: auto;
+}
+
+.checkBtnText {
+    height: 17px;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: left;
+    color: #999999;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.error {
+    position: relative;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.33px;
+    color: #ff0d12;
+    text-align: left;
+}

@@ -1,0 +1,61 @@
+.container {
+    position: relative;
+    top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.point {
+    font-family: AppleSDGothicNeo;
+    width: 15px;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: -0.35px;
+    color: #888888;
+    display: inline-block;
+    text-align: left;
+}
+
+.content {
+    font-family: AppleSDGothicNeo;
+    width: 320px;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: -0.35px;
+    color: #888888;
+    display: inline-block;
+    text-align: left;
+    position: relative;
+}
+
+.contentWrap {
+    position: relative;
+    top: 5px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.contentWrap:before {
+    content: "";
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+}
+
+.title {
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.37px;
+    color: #333333;
+    text-align: left;
+}

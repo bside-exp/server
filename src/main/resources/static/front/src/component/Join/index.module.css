@@ -1,0 +1,33 @@
+.container {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background-color: #FFFFFF;
+    display: inline-block;
+}
+
+.logo {
+    width: 37px;
+    height: 28px;
+    object-fit: contain;
+    position: absolute;
+    top: 114px;
+    right: 169px
+}
+
+.welcome {
+    width: 256px;
+    height: 28px;
+    font-family: AppleSDGothicNeo;
+    font-size: 20px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -0.4px;
+    color: #4a65f6;
+    position: absolute;
+    top : 152px;
+    left: 60px;
+    white-space: nowrap
+}
