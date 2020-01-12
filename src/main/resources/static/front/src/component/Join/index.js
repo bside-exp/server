@@ -94,7 +94,7 @@ export default class Join extends Component {
 
         return(
             <div className={styles.container}>
-                <Nav/>
+                <Nav onRight={window.close}/>
                 <img src="/image/logo.svg" className={styles.logo}/>
                 <span className={styles.welcome}>경험공유에 오신 것을 환영합니다.</span>
                 <EamilInput onChange={this.emailChange} check={this.state.emailDuplicate} delete={this.deleteEmail}/>

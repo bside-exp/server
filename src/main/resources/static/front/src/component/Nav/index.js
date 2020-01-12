@@ -1,31 +1,25 @@
 import React, {Component, Fragment} from 'react'
+import styles from './index.module.css'
 
-const navStyle = {
-    height: "44px",
-    left: "0px",
-    width: "100%",
-    position: "absolute",
-    top: "44px",
-    boxSizing: "border-box"
-}
-
-const combinedShapeStyle = {
-    width: "20px",
-    height: "15.5px",
-    objectFit: "contain",
-    borderRadius: "0.8px",
-    position: "absolute",
-    right: "16px",
-    top: "16px"
-}
 
 export default class Nav extends Component {
 
     render() {
+
+        const cls = this.props.class
+
         return (
             <Fragment>
-                <nav className="navbar" style={navStyle}>
-                    <img className="Combined-Shape" style={combinedShapeStyle} src="/image/x2.svg"/>
+                <nav className={[styles.nav, cls].join(' ')}>
+                    <div className={styles.leftBtn}></div>
+                    <div className={styles.title}>
+                        <div className={styles.text}>
+                            {this.props.children}
+                        </div>
+                    </div>
+                    <div className={styles.rightBtn} onClick={this.props.onRight}>
+                        <img src="/image/x2.svg"/>
+                    </div>
                 </nav>
             </Fragment>
         )

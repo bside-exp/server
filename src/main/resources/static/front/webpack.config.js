@@ -2,12 +2,15 @@ const path = require('path');
 
 module.exports = {
 	context: path.resolve(__dirname, './src'),
-	entry: ['@babel/polyfill', './index.js'],
+	entry: {
+		join: ["@babel/polyfill", "./join.js"],
+		term: ["@babel/polyfill", "./term.js"]
+	},
 	devtool: 'sourcemaps',
 	cache: true,
 	output: {
 		path: __dirname,
-		filename: './dist/bundle.js'
+		filename: './dist/[name].bundle.js'
 	},
 	mode: 'none',
 	module: {

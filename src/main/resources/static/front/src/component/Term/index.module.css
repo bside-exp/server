@@ -1,0 +1,25 @@
+.container {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background-color: #FFFFFF;
+    display: inline-block;
+}
+
+.nav {
+    font-family: AppleSDGothicNeo;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.45px;
+    color: #000000;
+}
+
+.content {
+    position: absolute;
+    width: 100%;
+    top: 102px;
+    left: 0px;
+}

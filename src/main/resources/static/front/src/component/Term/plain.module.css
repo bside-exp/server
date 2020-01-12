@@ -1,0 +1,31 @@
+.container {
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.title {
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.37px;
+    color: #333333;
+    text-align: left;
+}
+
+.content {
+    position: relative;
+    top: 3px;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: -0.35px;
+    color: #888888;
+    text-align: left;
+}

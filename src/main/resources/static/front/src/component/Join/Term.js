@@ -2,6 +2,11 @@ import React, {Component} from 'react'
 import styles from './Term.module.css'
 
 export default class Term extends Component {
+
+    openTerm = () => {
+        window.open("/term")
+    }
+
     render() {
         return (
             <div className={styles.container}>
@@ -11,7 +16,8 @@ export default class Term extends Component {
                     약관 전체 동의
                     </span>
                 </div>
-                <div className={[styles.termViewContainer, styles.inlineBlock].join(' ')}>
+                <div className={[styles.termViewContainer, styles.inlineBlock].join(' ')}
+                     onClick={this.openTerm}>
                 <span className={styles.termView}>
                     약관보기
                 </span>

@@ -23,6 +23,7 @@
     width: 200px;
     position: absolute;
     left: 297px;
+    cursor: pointer;
 }
 
 .circle {
