@@ -68,55 +68,26 @@ export default class Join extends Component {
         })
     }
 
-    deleteNickname = () => {
+    submit = async () => {
+        const emailResult =  await axios.post("/api/auth/user/duplicate/email", this.state.email);
+        const nicknameResult = await axios.post("/api/auth/user/duplicate/nickname", this.state.nickname)
+
         this.setState({
             ...this.state,
-            nickname: ''
+            emailDuplicate: emailResult.data,
+            nicknameDuplicate: nicknameResult.data
         })
-    }
 
-    deletePassword = () => {
-        this.setState({
-            ...this.state,
-            password: ''
-        })
-    }
-
-    deletePasswordCheck = () => {
-        this.setState({
-            ...this.state,
-            passwordCheck: ''
-        })
-    }
-
-    submit = () => {
-        axios.post("/api/auth/user/duplicate/email", this.state.email)
-            .then(response => {
-                this.setState({
-                    ...this.state,
-                    emailDuplicate: response.data
-                })
-
-                axios.post("/api/auth/user/duplicate/nickname", this.state.nickname)
-                    .then(response => {
-                        this.setState({
-                            ...this.state,
-                            nicknameDuplicate: response.data
-                        })
-                        if (!this.state.emailDuplicate && !this.state.nicknameDuplicate) {
-                            axios.post("/api/auth/join",
-                                {
-                                    username: this.state.email,
-                                    nickname: this.state.nickname,
-                                    password: this.state.password
-                                }).then(response => {
-                                console.log(response)
-                            })
-                        }
-                    })
+        if (!emailResult.data && !nicknameResult.data) {
+            axios.post("/api/auth/join",
+                {
+                    username: this.state.email,
+                    nickname: this.state.nickname,
+                    password: this.state.password
+                }).then(response => {
+                console.log(response)
             })
-
-
+        }
     }
 
     render() {

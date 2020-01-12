@@ -25,7 +25,7 @@ export default class Nav extends Component {
         return (
             <Fragment>
                 <nav className="navbar" style={navStyle}>
-                    <img className="Combined-Shape" style={combinedShapeStyle} src="/image/combined-shape.svg"/>
+                    <img className="Combined-Shape" style={combinedShapeStyle} src="/image/x2.svg"/>
                 </nav>
             </Fragment>
         )
