@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,11 +39,11 @@ public class UserService {
 
     public User join(JoinDto joinDto) throws ExpException {
 
-        if(this.duplicateUsername(joinDto.getUsername())) {
+        if (this.duplicateUsername(joinDto.getUsername())) {
             throw new IllegalArgumentException("중복된 이메일입니다.");
         }
 
-        if(this.duplicateNickName(joinDto.getNickname())) {
+        if (this.duplicateNickName(joinDto.getNickname())) {
             throw new IllegalArgumentException("중복된 닉네임입니다.");
         }
 
@@ -65,6 +66,22 @@ public class UserService {
 
     public boolean duplicateNickName(String nickName) {
         return userRepository.findByNickName(nickName).isPresent();
+    }
+
+    @Transactional
+    public User update(User input) throws ExpException {
+        User target = userRepository.findByUsername(input.getUsername())
+                .orElseThrow(() -> new ExpException("user does not exist"));
+
+        if (input.getNickName() != null) {
+            target.setNickName(input.getNickName());
+        }
+
+        if (input.getPassword() != null) {
+            target.setPassword(passwordEncoder.encode(input.getPassword()));
+        }
+
+        return target;
     }
 
     public String login(LoginDto loginDto) {

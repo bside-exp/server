@@ -5,13 +5,12 @@ import bundang.exp.user.User;
 import bundang.exp.user.UserService;
 import bundang.exp.user.dto.JoinDto;
 import bundang.exp.user.dto.LoginDto;
+import bundang.exp.user.dto.UpdateDto;
 import bundang.exp.user.security.JwtAuthenticationResponse;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
@@ -28,6 +27,14 @@ public class AuthController {
     @PostMapping("/join")
     public ResponseEntity<User> join(@Valid @RequestBody JoinDto joinDto) throws ExpException{
         return ResponseEntity.ok(service.join(joinDto));
+    }
+
+    @PutMapping("/user")
+    public ResponseEntity<User> updateUser(@Valid @RequestBody UpdateDto updateDto) throws Exception {
+        ModelMapper modelMapper = new ModelMapper();
+        User updated = service.update(modelMapper.map(updateDto, User.class));
+
+        return ResponseEntity.ok(updated);
     }
 
     @PostMapping("/login")
