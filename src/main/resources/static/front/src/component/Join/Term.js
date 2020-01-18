@@ -18,9 +18,9 @@ export default class Term extends Component {
                 </div>
                 <div className={[styles.termViewContainer, styles.inlineBlock].join(' ')}
                      onClick={this.openTerm}>
-                <span className={styles.termView}>
-                    약관보기
-                </span>
+                    <span className={styles.termView}>
+                        약관보기
+                    </span>
                     <img className={styles.termViewImg} src="/image/right-arrow.svg"/>
                 </div>
             </div>

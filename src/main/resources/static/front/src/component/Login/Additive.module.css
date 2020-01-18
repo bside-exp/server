@@ -1,0 +1,45 @@
+.container {
+    position: absolute;
+    top: 354px;
+    left: 0px;
+    text-align: left;
+}
+
+.inlineBlock {
+    display: inline;
+}
+
+.findPassword {
+    width: 100px;
+    position: absolute;
+    left: 20px;
+    cursor: pointer;
+}
+
+.join {
+    width: 80px;
+    position: absolute;
+    left: 130px;
+    cursor: pointer;
+}
+
+
+.additiveText {
+    width: 47px;
+    height: 17px;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: right;
+    color: #000000;
+}
+
+.arrowRight {
+    position: relative;
+    left: 2px;
+    bottom: 0px;
+}
