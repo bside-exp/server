@@ -1,0 +1,30 @@
+.btn {
+    width: 100%;
+    height: 58px;
+    background-color: #aeaeaf;
+    position: absolute;
+    top: 754px;
+    left: 0px;
+    text-align: center;
+    display: table;
+    pointer-events: none;
+}
+
+.btn.checked {
+    cursor: pointer;
+    pointer-events: auto;
+    background-color: #4a65f6;
+}
+
+.btnText {
+    display: table-cell;
+    vertical-align: middle;
+    font-family: AppleSDGothicNeo;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.36px;
+    color: #ffffff;
+}

@@ -4,7 +4,9 @@ module.exports = {
 	context: path.resolve(__dirname, './src'),
 	entry: {
 		join: ["@babel/polyfill", "./join.js"],
-		term: ["@babel/polyfill", "./term.js"]
+
+		term: ["@babel/polyfill", "./term.js"],
+		login: ["@babel/polyfill", "./login.js"]
 	},
 	devtool: 'sourcemaps',
 	cache: true,

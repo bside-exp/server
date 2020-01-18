@@ -1,0 +1,35 @@
+.textInput::placeholder {
+    color: #999999;
+}
+
+.container {
+    float: left;
+    position: absolute;
+    top: 230px;
+    left: 0px;
+    width: calc(100% - 40px);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.form {
+    position: relative;
+    width: 100%;
+}
+
+.textInput {
+    width: 100%;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 1px;
+    padding-bottom: 15px;
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    letter-spacing: -0.4px;
+    background-color: #FFFFFF;
+    font-color: #999999;
+    border-color: #e0e0e1;
+    placeholder: #999999
+}
+

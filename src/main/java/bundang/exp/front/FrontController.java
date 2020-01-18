@@ -20,4 +20,9 @@ public class FrontController {
     public String term() {
         return "term.html";
     }
+
+    @GetMapping("/login")
+    public String page() {
+        return "login.html";
+    }
 }
