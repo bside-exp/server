@@ -35,7 +35,7 @@ export default class Login extends Component {
                 password: this.state.password
             })
 
-        console.log(token.data)
+        localStorage.setItem("expAccessToken", token.data.accessToken)
     }
 
     render() {
