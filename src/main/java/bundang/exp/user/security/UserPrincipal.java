@@ -3,6 +3,8 @@ package bundang.exp.user.security;
 import bundang.exp.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,12 +14,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Builder
+@Getter
+@Setter
 public class UserPrincipal implements UserDetails {
 
     private Long id;
 
     private String username;
-
+    private String nickname;
     @JsonIgnore
     private String password;
 
@@ -25,19 +29,12 @@ public class UserPrincipal implements UserDetails {
 
     public UserPrincipal() {}
 
-    public UserPrincipal(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long id, String username, String nickname, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
+        this.nickname = nickname;
         this.password = password;
         this.authorities = authorities;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -45,26 +42,13 @@ public class UserPrincipal implements UserDetails {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     @Override
     public String getPassword() {
         return password;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
-    }
-
-    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-        this.authorities = authorities;
     }
 
     public static UserPrincipal create(User user) {
@@ -75,6 +59,7 @@ public class UserPrincipal implements UserDetails {
         return new UserPrincipal(
                 user.getId(),
                 user.getUsername(),
+                user.getNickName(),
                 user.getPassword(),
                 authorities
         );

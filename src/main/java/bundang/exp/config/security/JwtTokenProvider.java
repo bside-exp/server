@@ -9,6 +9,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenProvider {
@@ -29,9 +32,18 @@ public class JwtTokenProvider {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs); //만료시간
 
+        Map<String, Object> payloads = new HashMap<>();
+        payloads.put("sub", Long.toString(userPrincipal.getId()));
+        payloads.put("nickname", userPrincipal.getNickname());
+        payloads.put("Authorities", userPrincipal.getAuthorities()
+                .stream()
+                .map(role -> role.getAuthority())
+                .collect(Collectors.toList())
+        );
+
         return Jwts.builder()
-                .setSubject(Long.toString(userPrincipal.getId()))
-                .setIssuedAt(new Date())
+                .setClaims(payloads)
+                .setIssuedAt(now)
                 .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
@@ -64,6 +76,5 @@ public class JwtTokenProvider {
         }
 
         return false;
-
     }
 }
