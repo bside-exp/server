@@ -1,9 +1,8 @@
-package bundang.exp.ExpRequest.damian;
+package bundang.exp.exp_request.domain;
 
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter

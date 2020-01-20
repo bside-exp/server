@@ -1,7 +1,6 @@
-package bundang.exp.ExpRequest.repository;
+package bundang.exp.exp_request.repository;
 
-import bundang.exp.ExpRequest.damian.ExpRequest;
-import bundang.exp.ExpRequest.damian.ExpRequestComment;
+import bundang.exp.exp_request.domain.ExpRequestComment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ExpRequestCommentRepository extends JpaRepository<ExpRequestComment, Long> {

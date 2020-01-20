@@ -1,7 +1,6 @@
-package bundang.exp.ExpRequest.damian;
+package bundang.exp.exp_request.domain;
 
 
-import bundang.exp.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
