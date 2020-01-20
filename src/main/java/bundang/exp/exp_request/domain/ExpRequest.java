@@ -1,4 +1,4 @@
-package bundang.exp.ExpRequest.damian;
+package bundang.exp.exp_request.domain;
 
 
 import bundang.exp.category.domain.Duty;
@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -24,6 +23,8 @@ public class ExpRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String title;
 
     @OneToOne
     private Industry industry;
