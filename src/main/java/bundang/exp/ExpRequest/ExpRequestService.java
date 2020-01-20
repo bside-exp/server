@@ -17,9 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -38,19 +36,25 @@ public class ExpRequestService {
         Industry industry = industryRepository.findByName(expRequestDto.getIndustry()).orElseThrow(() -> new IllegalArgumentException("산업군을 찾을 수 없습니다."));
         Duty duty = dutyRepository.findByName(expRequestDto.getDuty()).orElseThrow(() -> new IllegalArgumentException("직군을 찾을 수 없습니다."));
         List<Type> types = typeRepository.findByNameIn(Arrays.asList(expRequestDto.getTypes()));
-
+        List<ExpRequestTag> tags = Arrays.stream(expRequestDto.getTags()).map(s -> ExpRequestTag.builder().name(s).build()).collect(Collectors.toList());
 
         ExpRequest exp = ExpRequest.builder()
                 .industry(industry)
                 .duty(duty)
                 .types(types)
                 .description(expRequestDto.getDescription())
-                .tags(Arrays.stream(expRequestDto.getTags()).map(s -> ExpRequestTag.builder().name(s).build()).collect(Collectors.toList()))
                 .build();
 
-//        exp.addTag(Arrays.stream(expRequestDto.getTags()).map(s -> ExpRequestTag.builder().name(s).build()).collect(Collectors.toList()));
+        for (ExpRequestTag name: tags) {
+            ExpRequestTag expTag = ExpRequestTag.builder()
+                    .name(name.getName())
+                    .expRequest(exp)
+                    .build();
+            expRequestTagRepository.save(expTag);
+        }
+
         expRequestRepository.save(exp);
-//        expRequestTagRepository.save(tags);
+
         return expRequestDto;
     }
 

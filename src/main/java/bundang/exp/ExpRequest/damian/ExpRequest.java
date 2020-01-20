@@ -4,14 +4,14 @@ package bundang.exp.ExpRequest.damian;
 import bundang.exp.category.domain.Duty;
 import bundang.exp.category.domain.Industry;
 import bundang.exp.category.domain.Type;
-import lombok.*;
-import org.springframework.transaction.annotation.Transactional;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static bundang.exp.ExpRequest.damian.QExpRequestTag.expRequestTag;
 
 @Entity
 @Getter
@@ -39,10 +39,10 @@ public class ExpRequest {
     @OneToMany(mappedBy = "expRequest", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ExpRequestTag> tags;
 
-    public void addTag(List<ExpRequestTag> tags) {
-        tags.add(ExpRequestTag.builder()
-                .name(tags.stream().map(String::valueOf).collect(Collectors.joining()))
-                .expRequest(this)
-                .build());
-    }
+//    public void addTag(List<ExpRequestTag> tags) {
+//        tags.add(ExpRequestTag.builder()
+//                .name(tags.stream().map(String::valueOf).collect(Collectors.joining()))
+//                .expRequest(this)
+//                .build());
+//    }
 }
