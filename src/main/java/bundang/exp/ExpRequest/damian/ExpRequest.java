@@ -4,6 +4,7 @@ package bundang.exp.ExpRequest.damian;
 import bundang.exp.category.domain.Duty;
 import bundang.exp.category.domain.Industry;
 import bundang.exp.category.domain.Type;
+import bundang.exp.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,6 +39,10 @@ public class ExpRequest {
 
     @OneToMany(mappedBy = "expRequest", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ExpRequestTag> tags;
+
+    @ManyToOne
+    private User user;
+
 
 //    public void addTag(List<ExpRequestTag> tags) {
 //        tags.add(ExpRequestTag.builder()
