@@ -94,10 +94,10 @@ public class ExpRequestService {
                     .map(s -> ExpRequestTag.builder().name(s).build()).collect(Collectors.toList());
         }
 
-        for (ExpRequestTag name : tag) {
-            expRequestTagRepository.deleteById(name.getId());
-            System.out.println(name.getId());
-        }
+//        for (ExpRequestTag name : tag) {
+//            expRequestTagRepository.deleteById(name.getId());
+//            System.out.println(name.getId());
+//        }
 
 
         expRequest.setTitle(expRequestDto.getTitle());
@@ -108,15 +108,13 @@ public class ExpRequestService {
 
         if (tags != null) {
             for (ExpRequestTag name : tags) {
-                ExpRequestTag.builder()
+                ExpRequestTag expTag = ExpRequestTag.builder()
                         .name(name.getName())
                         .expRequest(expRequest)
                         .build();
-//                expRequestTagRepository.save(expTag);
+                expRequestTagRepository.save(expTag);
             }
         }
-
-//        expRequestRepository.save(expRequest);
 
         return expRequestDto;
 
