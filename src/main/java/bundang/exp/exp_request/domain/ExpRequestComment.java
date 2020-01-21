@@ -1,6 +1,7 @@
 package bundang.exp.exp_request.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class ExpRequestComment {
 
     private String contents;
 
+    @JsonIgnore
     @ManyToOne
     private ExpRequest expRequest;
 
