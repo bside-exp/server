@@ -41,4 +41,10 @@ public class ExpRequestController {
         UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
         return ResponseEntity.ok(service.create(user, expRequestDto));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ExpRequestDto> update(Authentication authentication, @RequestBody ExpRequestDto expRequestDto, @PathVariable Long id) {
+        UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
+        return ResponseEntity.ok(service.update(user, expRequestDto, id));
+    }
 }

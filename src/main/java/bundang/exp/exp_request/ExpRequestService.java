@@ -14,6 +14,7 @@ import bundang.exp.exp_request.repository.ExpRequestTagRepository;
 import bundang.exp.user.User;
 import bundang.exp.user.security.UserPrincipal;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,9 +30,8 @@ public class ExpRequestService {
     private final DutyRepository dutyRepository;
     private final IndustryRepository industryRepository;
     private final TypeRepository typeRepository;
+    private final ModelMapper modelMapper;
 
-
-    @Transactional
     public ExpRequestDto create(UserPrincipal userPrincipal, ExpRequestDto expRequestDto) {
 
         Industry industry = industryRepository.findByName(expRequestDto.getIndustry()).orElseThrow(() -> new IllegalArgumentException("산업군을 찾을 수 없습니다."));
@@ -71,5 +71,52 @@ public class ExpRequestService {
         return expRequestDto;
     }
 
+    @Transactional
+    public ExpRequestDto update(UserPrincipal userPrincipal, ExpRequestDto expRequestDto, Long id) {
 
+        ExpRequest expRequest = expRequestRepository.findById(id).orElseThrow(() -> new RuntimeException("게시물을 찾을 수 없습니다."));
+        List<ExpRequestTag> tag = expRequestTagRepository.findByExpRequestId(id);
+
+        Industry industry = industryRepository.findByName(expRequestDto.getIndustry()).orElseThrow(() -> new IllegalArgumentException("산업군을 찾을 수 없습니다."));
+        Duty duty = dutyRepository.findByName(expRequestDto.getDuty()).orElseThrow(() -> new IllegalArgumentException("직군을 찾을 수 없습니다."));
+        List<Type> types = typeRepository.findByNameIn(expRequestDto.getTypes());
+
+        List<ExpRequestTag> tags = null;
+        if (expRequestDto.getTags() != null) {
+            tags = expRequestDto
+                    .getTags()
+                    .stream()
+                    .map(s -> ExpRequestTag.builder().name(s).build()).collect(Collectors.toList());
+        }
+
+        User user = User.builder()
+                .id(userPrincipal.getId())
+                .build();
+
+//        ExpRequest exp = ExpRequest.builder()
+//                .title(expRequestDto.getTitle())
+//                .industry(industry)
+//                .duty(duty)
+//                .types(types)
+//                .user(user)
+//                .description(expRequestDto.getDescription())
+//                .build();
+
+        for (ExpRequestTag name : tags) {
+//            ExpRequestTag expTag = ExpRequestTag.builder()
+//                    .name(name.getName())
+//                    .expRequest(exp)
+//                    .build();
+
+            modelMapper.map(tags, tag);
+            //expRequestTagRepository.save(expTag);
+        }
+
+        modelMapper.map(expRequestDto, expRequest);
+        expRequestRepository.save(expRequest);
+
+        return expRequestDto;
+
+
+    }
 }
