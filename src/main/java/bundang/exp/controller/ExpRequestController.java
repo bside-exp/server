@@ -41,4 +41,35 @@ public class ExpRequestController {
         UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
         return ResponseEntity.ok(service.create(user, expRequestDto));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    @DeleteMapping("/{id}")
+    public void delete(Authentication authentication, @PathVariable Long id) {
+
+        UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
+
+        if(user != null) {
+            requestRepository.deleteById(id);
+        }
+    }
+
 }
