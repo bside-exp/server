@@ -5,16 +5,14 @@ import bundang.exp.category.domain.Duty;
 import bundang.exp.category.domain.Industry;
 import bundang.exp.category.domain.Type;
 import bundang.exp.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

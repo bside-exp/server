@@ -75,6 +75,10 @@ public class ExpRequestService {
     @Transactional
     public ExpRequestDto update(UserPrincipal userPrincipal, ExpRequestDto expRequestDto, Long id) {
 
+        if (userPrincipal == null) {
+            throw new RuntimeException("유저정보가 존재하지 않습니다.");
+        }
+
         ExpRequest expRequest = expRequestRepository.findById(id).orElseThrow(() -> new RuntimeException("게시물을 찾을 수 없습니다."));
         List<ExpRequestTag> tag = expRequestTagRepository.findByExpRequestId(id);
 
@@ -90,31 +94,20 @@ public class ExpRequestService {
                     .map(s -> ExpRequestTag.builder().name(s).build()).collect(Collectors.toList());
         }
 
-        User user = User.builder()
-                .id(userPrincipal.getId())
-                .build();
+        expRequest.setTitle(expRequestDto.getTitle());
+        expRequest.setIndustry(industry);
+        expRequest.setDuty(duty);
+        expRequest.setTypes(types);
+        expRequest.setDescription(expRequestDto.getDescription());
 
-//        ExpRequest exp = ExpRequest.builder()
-//                .title(expRequestDto.getTitle())
-//                .industry(industry)
-//                .duty(duty)
-//                .types(types)
-//                .user(user)
-//                .description(expRequestDto.getDescription())
-//                .build();
 
         for (ExpRequestTag name : tags) {
-//            ExpRequestTag expTag = ExpRequestTag.builder()
-//                    .name(name.getName())
-//                    .expRequest(exp)
-//                    .build();
-
-            modelMapper.map(tags, tag);
-            //expRequestTagRepository.save(expTag);
+            tags.add(ExpRequestTag.builder()
+                    .name(name.getName())
+                    .expRequest(expRequest)
+                    .build());
+            //modelMapper.map(tags, tag);
         }
-
-        modelMapper.map(expRequestDto, expRequest);
-        expRequestRepository.save(expRequest);
 
         return expRequestDto;
 
