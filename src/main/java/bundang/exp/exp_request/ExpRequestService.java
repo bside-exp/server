@@ -94,20 +94,29 @@ public class ExpRequestService {
                     .map(s -> ExpRequestTag.builder().name(s).build()).collect(Collectors.toList());
         }
 
+        for (ExpRequestTag name : tag) {
+            expRequestTagRepository.deleteById(name.getId());
+            System.out.println(name.getId());
+        }
+
+
         expRequest.setTitle(expRequestDto.getTitle());
         expRequest.setIndustry(industry);
         expRequest.setDuty(duty);
         expRequest.setTypes(types);
         expRequest.setDescription(expRequestDto.getDescription());
 
-
-        for (ExpRequestTag name : tags) {
-            tags.add(ExpRequestTag.builder()
-                    .name(name.getName())
-                    .expRequest(expRequest)
-                    .build());
-            //modelMapper.map(tags, tag);
+        if (tags != null) {
+            for (ExpRequestTag name : tags) {
+                ExpRequestTag.builder()
+                        .name(name.getName())
+                        .expRequest(expRequest)
+                        .build();
+//                expRequestTagRepository.save(expTag);
+            }
         }
+
+//        expRequestRepository.save(expRequest);
 
         return expRequestDto;
 
