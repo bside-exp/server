@@ -15,9 +15,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.text.ParseException;
 import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -28,11 +28,15 @@ public class ExpRequestController {
     private final ExpRequestRepository requestRepository;
     private final ExpRequestService service;
 
-
     @GetMapping("/{pNo}")
     public ResponseEntity<Page<ExpRequest>> list(@PathVariable Integer pNo) throws ParseException {
         Pageable pageable = PageRequest.of(pNo - 1,5, Sort.Direction.DESC, "id");
         return ResponseEntity.ok(requestRepository.findAll(pageable));
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ExpRequest> details(@PathVariable Long id) {
+        ExpRequest expRequest = requestRepository.findById(id).orElseThrow(() -> new RuntimeException("일치하는 게시물을 찾을 수 없습니다."));
+        return ResponseEntity.ok(expRequest);
     }
 
     @PostMapping
@@ -47,4 +51,15 @@ public class ExpRequestController {
         UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
         return ResponseEntity.ok(service.update(user, expRequestDto, id));
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(Authentication authentication, @PathVariable Long id) {
+
+        UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
+
+        if(user != null) {
+            requestRepository.deleteById(id);
+        }
+    }
+
 }
