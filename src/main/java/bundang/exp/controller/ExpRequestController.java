@@ -30,9 +30,10 @@ public class ExpRequestController {
 
     @GetMapping("/{pNo}")
     public ResponseEntity<Page<ExpRequest>> list(@PathVariable Integer pNo) throws ParseException {
-        Pageable pageable = PageRequest.of(pNo - 1,5, Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(pNo - 1, 5, Sort.Direction.DESC, "id");
         return ResponseEntity.ok(requestRepository.findAll(pageable));
-
+    }
+    
     @GetMapping("/{id}")
     public ResponseEntity<ExpRequest> details(@PathVariable Long id) {
         ExpRequest expRequest = requestRepository.findById(id).orElseThrow(() -> new RuntimeException("일치하는 게시물을 찾을 수 없습니다."));
