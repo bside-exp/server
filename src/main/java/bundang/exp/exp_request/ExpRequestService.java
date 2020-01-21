@@ -51,6 +51,7 @@ public class ExpRequestService {
                 .build();
 
         ExpRequest exp = ExpRequest.builder()
+                .title(expRequestDto.getTitle())
                 .industry(industry)
                 .duty(duty)
                 .types(types)
