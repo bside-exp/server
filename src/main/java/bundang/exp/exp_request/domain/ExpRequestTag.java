@@ -19,7 +19,7 @@ public class ExpRequestTag {
     private String name;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private ExpRequest expRequest;
 
 }

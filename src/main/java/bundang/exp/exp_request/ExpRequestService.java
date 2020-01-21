@@ -32,6 +32,7 @@ public class ExpRequestService {
     private final TypeRepository typeRepository;
     private final ModelMapper modelMapper;
 
+    @Transactional
     public ExpRequestDto create(UserPrincipal userPrincipal, ExpRequestDto expRequestDto) {
 
         Industry industry = industryRepository.findByName(expRequestDto.getIndustry()).orElseThrow(() -> new IllegalArgumentException("산업군을 찾을 수 없습니다."));
@@ -80,7 +81,7 @@ public class ExpRequestService {
         }
 
         ExpRequest expRequest = expRequestRepository.findById(id).orElseThrow(() -> new RuntimeException("게시물을 찾을 수 없습니다."));
-        List<ExpRequestTag> tag = expRequestTagRepository.findByExpRequestId(id);
+        List<ExpRequestTag> originalTag = expRequestTagRepository.findByExpRequestId(id);
 
         Industry industry = industryRepository.findByName(expRequestDto.getIndustry()).orElseThrow(() -> new IllegalArgumentException("산업군을 찾을 수 없습니다."));
         Duty duty = dutyRepository.findByName(expRequestDto.getDuty()).orElseThrow(() -> new IllegalArgumentException("직군을 찾을 수 없습니다."));
@@ -91,33 +92,21 @@ public class ExpRequestService {
             tags = expRequestDto
                     .getTags()
                     .stream()
-                    .map(s -> ExpRequestTag.builder().name(s).build()).collect(Collectors.toList());
+                    .map(s -> ExpRequestTag.builder().name(s).expRequest(expRequest).build()).collect(Collectors.toList());
         }
-
-//        for (ExpRequestTag name : tag) {
-//            expRequestTagRepository.deleteById(name.getId());
-//            System.out.println(name.getId());
-//        }
-
 
         expRequest.setTitle(expRequestDto.getTitle());
         expRequest.setIndustry(industry);
         expRequest.setDuty(duty);
         expRequest.setTypes(types);
         expRequest.setDescription(expRequestDto.getDescription());
+        expRequest.getTags().addAll(tags);
 
-        if (tags != null) {
-            for (ExpRequestTag name : tags) {
-                ExpRequestTag expTag = ExpRequestTag.builder()
-                        .name(name.getName())
-                        .expRequest(expRequest)
-                        .build();
-                expRequestTagRepository.save(expTag);
-            }
-        }
+        List<Long> deleteTargetExpRequestTagIds = originalTag.stream()
+                .map(x -> x.getId()).collect(Collectors.toList());
+
+        expRequestTagRepository.deleteAllByIdIn(deleteTargetExpRequestTagIds);
 
         return expRequestDto;
-
-
     }
 }
