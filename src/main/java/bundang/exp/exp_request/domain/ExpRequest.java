@@ -5,6 +5,7 @@ import bundang.exp.category.domain.Duty;
 import bundang.exp.category.domain.Industry;
 import bundang.exp.category.domain.Type;
 import bundang.exp.user.User;
+import bundang.exp.user.audit.DateAudit;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExpRequest {
+public class ExpRequest extends DateAudit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

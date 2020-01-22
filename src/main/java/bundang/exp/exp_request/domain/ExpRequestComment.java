@@ -1,6 +1,8 @@
 package bundang.exp.exp_request.domain;
 
 
+import bundang.exp.user.User;
+import bundang.exp.user.audit.DateAudit;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +16,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExpRequestComment {
+public class ExpRequestComment extends DateAudit {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,6 +26,10 @@ public class ExpRequestComment {
     @JsonIgnore
     @ManyToOne
     private ExpRequest expRequest;
+
+    @JsonIgnore
+    @ManyToOne
+    private User user;
 
 
 }
