@@ -7,8 +7,11 @@ import bundang.exp.category.repository.DutyRepository;
 import bundang.exp.category.repository.IndustryRepository;
 import bundang.exp.category.repository.TypeRepository;
 import bundang.exp.exp_request.domain.ExpRequest;
+import bundang.exp.exp_request.domain.ExpRequestComment;
 import bundang.exp.exp_request.domain.ExpRequestTag;
+import bundang.exp.exp_request.dto.ExpRequestCommentDto;
 import bundang.exp.exp_request.dto.ExpRequestDto;
+import bundang.exp.exp_request.repository.ExpRequestCommentRepository;
 import bundang.exp.exp_request.repository.ExpRequestRepository;
 import bundang.exp.exp_request.repository.ExpRequestTagRepository;
 import bundang.exp.user.User;
@@ -19,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,6 +31,7 @@ public class ExpRequestService {
 
     private final ExpRequestRepository expRequestRepository;
     private final ExpRequestTagRepository expRequestTagRepository;
+    private final ExpRequestCommentRepository expRequestCommentRepository;
     private final DutyRepository dutyRepository;
     private final IndustryRepository industryRepository;
     private final TypeRepository typeRepository;
@@ -108,5 +113,24 @@ public class ExpRequestService {
         expRequestTagRepository.deleteAllByIdIn(deleteTargetExpRequestTagIds);
 
         return expRequestDto;
+    }
+
+    public ExpRequestCommentDto createComment(UserPrincipal userPrincipal, ExpRequestCommentDto expRequestCommentDto, Long id) {
+
+        User user = User.builder()
+                .id(userPrincipal.getId())
+                .build();
+
+        ExpRequest exp = expRequestRepository.findById(id).orElseThrow(() -> new RuntimeException("지정된 게시물을 찾을 수 없습니다."));
+
+        ExpRequestComment comment = ExpRequestComment.builder()
+                .user(user)
+                .expRequest(exp)
+                .contents(expRequestCommentDto.getContents())
+                .build();
+
+        expRequestCommentRepository.save(comment);
+
+        return expRequestCommentDto;
     }
 }

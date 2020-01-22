@@ -3,7 +3,10 @@ package bundang.exp.controller;
 
 import bundang.exp.exp_request.ExpRequestService;
 import bundang.exp.exp_request.domain.ExpRequest;
+import bundang.exp.exp_request.domain.ExpRequestComment;
+import bundang.exp.exp_request.dto.ExpRequestCommentDto;
 import bundang.exp.exp_request.dto.ExpRequestDto;
+import bundang.exp.exp_request.repository.ExpRequestCommentRepository;
 import bundang.exp.exp_request.repository.ExpRequestRepository;
 import bundang.exp.user.security.UserPrincipal;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +29,7 @@ import java.util.List;
 public class ExpRequestController {
 
     private final ExpRequestRepository requestRepository;
+    private final ExpRequestCommentRepository requestCommentRepository;
     private final ExpRequestService service;
 
     @GetMapping("/{pNo}")
@@ -61,6 +65,12 @@ public class ExpRequestController {
         if(user != null) {
             requestRepository.deleteById(id);
         }
+    }
+
+    @PostMapping("/{id}/comment")
+    public ResponseEntity<ExpRequestCommentDto> createComment(Authentication authentication, @RequestBody ExpRequestCommentDto expRequestCommentDto, @PathVariable Long id) {
+        UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
+        return ResponseEntity.ok(service.createComment(user, expRequestCommentDto, id));
     }
 
 }
