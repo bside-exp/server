@@ -18,8 +18,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import java.text.ParseException;
-import java.util.List;
+
+import javax.validation.Valid;
 
 
 @RestController
@@ -32,12 +32,12 @@ public class ExpRequestController {
     private final ExpRequestCommentRepository requestCommentRepository;
     private final ExpRequestService service;
 
-    @GetMapping("/{pNo}")
-    public ResponseEntity<Page<ExpRequest>> list(@PathVariable Integer pNo) {
-        Pageable pageable = PageRequest.of(pNo - 1, 5, Sort.Direction.DESC, "id");
+    @GetMapping
+    public ResponseEntity<Page<ExpRequest>> list(@RequestParam Integer page) {
+        Pageable pageable = PageRequest.of(page - 1, 5, Sort.Direction.DESC, "id");
         return ResponseEntity.ok(requestRepository.findAll(pageable));
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<ExpRequest> details(@PathVariable Long id) {
         ExpRequest expRequest = requestRepository.findById(id).orElseThrow(() -> new RuntimeException("일치하는 게시물을 찾을 수 없습니다."));
@@ -70,12 +70,12 @@ public class ExpRequestController {
     @GetMapping("/{id}/comment/{pNo}")
     public ResponseEntity<Page<ExpRequestComment>> listComment(@PathVariable Long id, @PathVariable Integer pNo) {
         Pageable pageable = PageRequest.of(pNo - 1, 5, Sort.Direction.DESC, "id");
-        return ResponseEntity.ok(requestCommentRepository.findAll(pageable));
+        return ResponseEntity.ok(requestCommentRepository.findAllByExpRequest_Id(id, pageable));
     }
 
 
     @PostMapping("/{id}/comment")
-    public ResponseEntity<ExpRequestCommentDto> createComment(Authentication authentication, @RequestBody ExpRequestCommentDto expRequestCommentDto, @PathVariable Long id) {
+    public ResponseEntity<ExpRequestCommentDto> createComment(Authentication authentication, @RequestBody @Valid ExpRequestCommentDto expRequestCommentDto, @PathVariable Long id) {
         UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
         return ResponseEntity.ok(service.createComment(user, expRequestCommentDto, id));
     }

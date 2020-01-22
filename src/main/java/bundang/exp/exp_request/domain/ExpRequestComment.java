@@ -3,7 +3,6 @@ package bundang.exp.exp_request.domain;
 
 import bundang.exp.user.User;
 import bundang.exp.user.audit.DateAudit;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,6 +27,4 @@ public class ExpRequestComment extends DateAudit {
 
     @ManyToOne
     private User user;
-
-
 }
