@@ -33,7 +33,7 @@ public class ExpRequestController {
     private final ExpRequestService service;
 
     @GetMapping("/{pNo}")
-    public ResponseEntity<Page<ExpRequest>> list(@PathVariable Integer pNo) throws ParseException {
+    public ResponseEntity<Page<ExpRequest>> list(@PathVariable Integer pNo) {
         Pageable pageable = PageRequest.of(pNo - 1, 5, Sort.Direction.DESC, "id");
         return ResponseEntity.ok(requestRepository.findAll(pageable));
     }
@@ -66,6 +66,13 @@ public class ExpRequestController {
             requestRepository.deleteById(id);
         }
     }
+
+    @GetMapping("/{id}/comment/{pNo}")
+    public ResponseEntity<Page<ExpRequestComment>> listComment(@PathVariable Long id, @PathVariable Integer pNo) {
+        Pageable pageable = PageRequest.of(pNo - 1, 5, Sort.Direction.DESC, "id");
+        return ResponseEntity.ok(requestCommentRepository.findAll(pageable));
+    }
+
 
     @PostMapping("/{id}/comment")
     public ResponseEntity<ExpRequestCommentDto> createComment(Authentication authentication, @RequestBody ExpRequestCommentDto expRequestCommentDto, @PathVariable Long id) {

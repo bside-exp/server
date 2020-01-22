@@ -23,11 +23,9 @@ public class ExpRequestComment extends DateAudit {
 
     private String contents;
 
-    @JsonIgnore
     @ManyToOne
     private ExpRequest expRequest;
 
-    @JsonIgnore
     @ManyToOne
     private User user;
 
