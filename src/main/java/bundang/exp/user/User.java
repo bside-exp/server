@@ -2,6 +2,7 @@ package bundang.exp.user;
 
 import bundang.exp.role.Role;
 import bundang.exp.user.audit.DateAudit;
+import bundang.exp.user.security.UserPrincipal;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -18,6 +19,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends DateAudit {
+
+    public static User create(UserPrincipal userPrincipal) {
+        User user = new User();
+        user.setUsername(userPrincipal.getUsername());
+        user.setNickName(userPrincipal.getNickname());
+        user.setPassword(userPrincipal.getPassword());
+
+        return user;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

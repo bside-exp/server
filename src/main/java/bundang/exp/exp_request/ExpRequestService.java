@@ -1,11 +1,11 @@
 package bundang.exp.exp_request;
 
 import bundang.exp.category.domain.Duty;
+import bundang.exp.category.domain.ExpOfferType;
 import bundang.exp.category.domain.Industry;
-import bundang.exp.category.domain.Type;
 import bundang.exp.category.repository.DutyRepository;
+import bundang.exp.category.repository.ExpOfferTypeRepository;
 import bundang.exp.category.repository.IndustryRepository;
-import bundang.exp.category.repository.TypeRepository;
 import bundang.exp.exp_request.domain.ExpRequest;
 import bundang.exp.exp_request.domain.ExpRequestComment;
 import bundang.exp.exp_request.domain.ExpRequestTag;
@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +33,7 @@ public class ExpRequestService {
     private final ExpRequestCommentRepository expRequestCommentRepository;
     private final DutyRepository dutyRepository;
     private final IndustryRepository industryRepository;
-    private final TypeRepository typeRepository;
+    private final ExpOfferTypeRepository expOfferTypeRepository;
     private final ModelMapper modelMapper;
 
     @Transactional
@@ -42,7 +41,7 @@ public class ExpRequestService {
 
         Industry industry = industryRepository.findByName(expRequestDto.getIndustry()).orElseThrow(() -> new IllegalArgumentException("산업군을 찾을 수 없습니다."));
         Duty duty = dutyRepository.findByName(expRequestDto.getDuty()).orElseThrow(() -> new IllegalArgumentException("직군을 찾을 수 없습니다."));
-        List<Type> types = typeRepository.findByNameIn(expRequestDto.getTypes());
+        List<ExpOfferType> expOfferTypes = expOfferTypeRepository.findByNameIn(expRequestDto.getTypes());
 
         List<ExpRequestTag> tags = null;
         if (expRequestDto.getTags() != null) {
@@ -60,7 +59,7 @@ public class ExpRequestService {
                 .title(expRequestDto.getTitle())
                 .industry(industry)
                 .duty(duty)
-                .types(types)
+                .expOfferTypes(expOfferTypes)
                 .user(user)
                 .description(expRequestDto.getDescription())
                 .build();
@@ -86,11 +85,15 @@ public class ExpRequestService {
         }
 
         ExpRequest expRequest = expRequestRepository.findById(id).orElseThrow(() -> new RuntimeException("게시물을 찾을 수 없습니다."));
+        if (!expRequest.getUser().getId().equals(userPrincipal.getId())) {
+            throw new RuntimeException("작성자와 현재 사용자가 다릅니다.");
+        }
+
         List<ExpRequestTag> originalTag = expRequestTagRepository.findByExpRequestId(id);
 
         Industry industry = industryRepository.findByName(expRequestDto.getIndustry()).orElseThrow(() -> new IllegalArgumentException("산업군을 찾을 수 없습니다."));
         Duty duty = dutyRepository.findByName(expRequestDto.getDuty()).orElseThrow(() -> new IllegalArgumentException("직군을 찾을 수 없습니다."));
-        List<Type> types = typeRepository.findByNameIn(expRequestDto.getTypes());
+        List<ExpOfferType> expOfferTypes = expOfferTypeRepository.findByNameIn(expRequestDto.getTypes());
 
         List<ExpRequestTag> tags = null;
         if (expRequestDto.getTags() != null) {
@@ -103,7 +106,7 @@ public class ExpRequestService {
         expRequest.setTitle(expRequestDto.getTitle());
         expRequest.setIndustry(industry);
         expRequest.setDuty(duty);
-        expRequest.setTypes(types);
+        expRequest.setExpOfferTypes(expOfferTypes);
         expRequest.setDescription(expRequestDto.getDescription());
         expRequest.getTags().addAll(tags);
 
