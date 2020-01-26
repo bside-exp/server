@@ -22,6 +22,7 @@ public class User extends DateAudit {
 
     public static User create(UserPrincipal userPrincipal) {
         User user = new User();
+        user.setId(userPrincipal.getId());
         user.setUsername(userPrincipal.getUsername());
         user.setNickName(userPrincipal.getNickname());
         user.setPassword(userPrincipal.getPassword());

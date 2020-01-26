@@ -89,8 +89,6 @@ public class ExpRequestService {
             throw new RuntimeException("작성자와 현재 사용자가 다릅니다.");
         }
 
-        List<ExpRequestTag> originalTag = expRequestTagRepository.findByExpRequestId(id);
-
         Industry industry = industryRepository.findByName(expRequestDto.getIndustry()).orElseThrow(() -> new IllegalArgumentException("산업군을 찾을 수 없습니다."));
         Duty duty = dutyRepository.findByName(expRequestDto.getDuty()).orElseThrow(() -> new IllegalArgumentException("직군을 찾을 수 없습니다."));
         List<ExpOfferType> expOfferTypes = expOfferTypeRepository.findByNameIn(expRequestDto.getTypes());
@@ -101,6 +99,11 @@ public class ExpRequestService {
                     .getTags()
                     .stream()
                     .map(s -> ExpRequestTag.builder().name(s).expRequest(expRequest).build()).collect(Collectors.toList());
+
+            List<Long> deleteTargetExpRequestTagIds = expRequestTagRepository.findByExpRequestId(id).stream()
+                    .map(x -> x.getId()).collect(Collectors.toList());
+
+            expRequestTagRepository.deleteAllByIdIn(deleteTargetExpRequestTagIds);
         }
 
         expRequest.setTitle(expRequestDto.getTitle());
@@ -109,11 +112,6 @@ public class ExpRequestService {
         expRequest.setExpOfferTypes(expOfferTypes);
         expRequest.setDescription(expRequestDto.getDescription());
         expRequest.getTags().addAll(tags);
-
-        List<Long> deleteTargetExpRequestTagIds = originalTag.stream()
-                .map(x -> x.getId()).collect(Collectors.toList());
-
-        expRequestTagRepository.deleteAllByIdIn(deleteTargetExpRequestTagIds);
 
         return expRequestDto;
     }
