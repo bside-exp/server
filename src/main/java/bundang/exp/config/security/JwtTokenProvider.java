@@ -34,6 +34,7 @@ public class JwtTokenProvider {
 
         Map<String, Object> payloads = new HashMap<>();
         payloads.put("sub", Long.toString(userPrincipal.getId()));
+        payloads.put("email", userPrincipal.getUsername());
         payloads.put("nickname", userPrincipal.getNickname());
         payloads.put("Authorities", userPrincipal.getAuthorities()
                 .stream()
