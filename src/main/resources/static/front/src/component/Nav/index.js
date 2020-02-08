@@ -13,8 +13,10 @@ export default class Nav extends Component {
                 <nav className={[styles.nav, cls].join(' ')}>
                     <div className={styles.leftBtn}></div>
                     <div className={styles.title}>
-                        <div className={styles.text}>
-                            {this.props.children}
+                        <div className={styles.table}>
+                            <div className={styles.text}>
+                                {this.props.children}
+                            </div>
                         </div>
                     </div>
                     <div className={styles.rightBtn} onClick={this.props.onRight}>

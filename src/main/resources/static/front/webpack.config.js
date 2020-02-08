@@ -6,7 +6,8 @@ module.exports = {
 		join: ["@babel/polyfill", "./join.js"],
 
 		term: ["@babel/polyfill", "./term.js"],
-		login: ["@babel/polyfill", "./login.js"]
+        login: ["@babel/polyfill", "./login.js"],
+        expOfferRegit: ["@babel/polyfill", "./expOfferRegit.js"]
 	},
 	devtool: 'sourcemaps',
 	cache: true,
