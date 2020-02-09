@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
 import styles from './index.module.css'
 import Nav from "./Nav";
-import TextInput from "./TextInput";
-import ScrollSelector from "./ScrollSelector";
+import TextInput from "../TextInput";
+import ScrollSelector from "../ScrollSelector";
 import axios from 'axios'
+import ScrollMultiSelector from "../ScrollMultiSelector";
+import Tag from "../Tag";
+import Title from "../Title";
+import MultilineTextInput from "../MultilineTextInput";
 
 export default class ExpOfferRegit extends Component {
 
@@ -11,12 +15,13 @@ export default class ExpOfferRegit extends Component {
         title: '',
         industry: '',
         duty: '',
-        expOfferTypes: '',
+        expOfferTypes: [],
         email: '',
         contact: '',
         firmName: '',
         expDuration: '',
-        description: ''
+        description: '',
+        tags: []
     }
 
     setTitle = (title) => {
@@ -81,10 +86,35 @@ export default class ExpOfferRegit extends Component {
             description: des
         })
     }
+    industry = ['기술/IT', '보건/복지 서비스업', '제조업', '금융업', '교육/서비스업', '테스트업', '테테테테테'];
+    job = ['전략/기획', '개발', '기타']
+
+    setTags = (tags) => {
+        this.setState({
+            ...this.state,
+            tags: tags
+        })
+    }
 
     submit = async () => {
+        const token = localStorage.getItem("expAccessToken")
+        const headers = {
+            "Authorization": "Bearer " + token
+        }
         const result = await axios.post("/api/exp-offer", {
             ...this.state
+        }, {
+            headers: headers
+        })
+
+        window.close()
+    }
+
+    componentDidMount() {
+        this.setState({
+            ...this.state,
+            industry: this.industry[0],
+            duty: this.job[0]
         })
     }
 
@@ -92,26 +122,26 @@ export default class ExpOfferRegit extends Component {
         return (
             <div className={styles.container}>
                 <div className={styles["top-block"]}></div>
-                <Nav cancel={window.close}/>
-                <TextInput label='제목'
-                           placeHolder='제공하고 싶은 경험 제목을 입력해 주세요'
-                           paddingTop={styles.pd20}
-                           func={this.setTitle}
+                <Nav cancel={window.close} submit={this.submit}/>
+                <Title label='제목'
+                       placeHolder='제공하고 싶은 경험 제목을 입력해 주세요'
+                       paddingTop={styles.pd20}
+                       func={this.setTitle}
                 />
                 <ScrollSelector label='산업군'
-                                content={['기술/IT', '보건/복지 서비스업', '제조업', '금융업', '교육/서비스업', '테스트업', '테테테테테']}
+                                content={this.industry}
                                 paddingTop={styles.pd30}
                                 func={this.setIndustry}
                 />
                 <ScrollSelector label='직무'
-                                content={['전략/기획', '개발', '기타']}
+                                content={this.job}
                                 paddingTop={styles.pd30}
                                 func={this.setJob}
                 />
-                <ScrollSelector label='제공 형태'
-                                content={['Email 제공', '유선통화', '오프라인 인터뷰']}
-                                paddingTop={styles.pd30}
-                                func={this.setOffer}
+                <ScrollMultiSelector label='제공 형태'
+                                     content={['Email 제공', '유선통화', '오프라인 인터뷰']}
+                                     paddingTop={styles.pd30}
+                                     func={this.setOffer}
                 />
                 <TextInput label='이메일'
                            placeHolder='이메일 주소를 입력해주세요'
@@ -133,11 +163,12 @@ export default class ExpOfferRegit extends Component {
                            paddingTop={styles.pd30}
                            func={this.setDuration}
                 />
-                <TextInput label='자기소개'
-                           placeHolder='자기소개 및 나의 경험을 소개해 주세요'
-                           paddingTop={styles.pd30}
-                           func={this.setDes}
+                <MultilineTextInput label='자기소개'
+                                    placeHolder='자기소개 및 나의 경험을 소개해 주세요'
+                                    paddingTop={styles.pd30}
+                                    func={this.setDes}
                 />
+                <Tag func={this.setTags} tags={this.state.tags}/>
             </div>
 
         )

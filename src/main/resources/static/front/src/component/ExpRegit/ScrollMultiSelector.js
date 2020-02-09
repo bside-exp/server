@@ -1,31 +1,44 @@
 import React, {Component} from 'react'
-import styles from './ScrollSelector.css'
+import styles from './ScrollMultiSelector.css'
 
-export default class ScrollSelector extends Component {
+export default class ScrollMultiSelector extends Component {
 
     state = {
-        selected: 0
+        selected: [false, false, false]
     }
 
     onItemClick = (e) => {
         const s = Number(e.target.getAttribute('index'));
+        const selected = this.state.selected.map((item, index) => {
+            if (index == s) {
+                return !item
+            } else {
+                return item
+            }
+        })
         this.setState({
             ...this.state,
-            selected: s
+            selected: selected
         })
-        console.log(s)
-        this.props.func(this.props.content[s])
+
+        const result = new Array();
+        selected.forEach((item, index) => {
+            if (item) {
+                result.push(this.props.content[index])
+            }
+        })
+
+        this.props.func(result)
     }
 
     render() {
-
         const label = this.props.label;
         const content = this.props.content;
         const paddingTop = this.props.paddingTop ? this.props.paddingTop : '';
 
         const con = content.map((content, index) => {
             let style = index === 0 ? [styles.item, styles["first-item"]].join(' ') : styles.item;
-            if (this.state.selected === index) {
+            if (this.state.selected[index]) {
                 style = [style, styles.selected].join(' ')
             }
             return (

@@ -1,0 +1,84 @@
+.nav {
+    height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #2d2f4f;
+}
+
+.title-box {
+    width: 255px;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.title-table {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.title {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.btn-box {
+    width: 60px;
+    height: 100%;
+    display: inline-block;
+}
+
+.btn-table {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.rightBtn {
+    width: 60px;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    opacity: 0.8;
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+
+
+.leftBtn {
+    width: 60px;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    opacity: 0.8;
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+    color: #ffffff;
+}

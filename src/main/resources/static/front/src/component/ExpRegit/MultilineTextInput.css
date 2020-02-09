@@ -1,0 +1,63 @@
+.container {
+    position: relative;
+    width: calc(100% - 40px);
+    height: auto;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.title {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #333333;
+}
+
+.content-box {
+    width: 100%;
+    position: relative;
+    top: 24px;
+    left: 0px;
+}
+
+.content {
+    width: 100%;
+    border-width: 0;
+    height: 24px;
+    resize: none;
+    word-break: break-all;
+    font-family: AppleSDGothicNeo;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.6;
+    letter-spacing: -0.3px;
+    color: #000000;
+}
+
+.content::placeholder {
+    font-family: AppleSDGothicNeo;
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #cccccc;
+}
+
+.line {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    margin-top: 20px;
+    background-color: #e0e0e1;
+}

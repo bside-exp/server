@@ -1,0 +1,127 @@
+.container {
+    width: calc(100% - 40px);
+    margin-top: 30px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: left;
+}
+
+.tag-btn {
+    margin-left: 6px;
+    position: relative;
+    width: 90px;
+    height: 40px;
+    margin-left: 6px;
+    border-radius: 20px;
+    border: solid 1px #ebebeb;
+    background-color: #ffffff;
+    display: inline-block;
+}
+
+.title {
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #333333;
+}
+
+.title-box {
+    vertical-align: top;
+}
+
+.limit {
+    margin-left: 6px;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #bbbbbb;
+}
+
+.tag-box {
+    font-size: 0px;
+    margin-top: 12px;
+}
+
+.tag {
+    height: 40px;
+    vertical-align: top;
+    border-radius: 20px;
+    border: solid 1px #ebebeb;
+    background-color: #fafafa;
+    display: inline-block;
+    margin-left: 6px;
+
+    font-family: AppleSDGothicNeo;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.28px;
+    color: #000000;
+}
+
+.tag .text-box {
+    padding-right: 20px;
+    position: relative;
+    top: 10px;
+    left: 12px;
+}
+
+.tag-btn .text {
+    position: absolute;
+    left: 12px;
+    top: 9px;
+    font-family: AppleSDGothicNeo;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.28px;
+    color: #999999;
+}
+
+.img {
+    vertical-align: middle;
+}
+
+.input-box {
+    width: 93px;
+    height: 40px;
+    border-radius: 20px;
+    border: solid 1px #4a65f6;
+    background-color: #ffffff;
+    display: inline-block;
+    vertical-align: top;
+
+    font-family: AppleSDGothicNeo;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.28px;
+    color: #000000;
+}
+
+.input-box .wrap {
+    position: relative;
+    top: 9px;
+    left: 12px;
+    padding-right: 20px;
+}
+
+.input-box .input {
+    border-width: 0;
+    width: 60px;
+}
