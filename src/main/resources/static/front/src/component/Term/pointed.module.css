@@ -17,6 +17,9 @@
     color: #888888;
     display: inline-block;
     text-align: left;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .content {
@@ -32,6 +35,8 @@
     display: inline-block;
     text-align: left;
     position: relative;
+    top: 0px;
+    left: 15px;
 }
 
 .contentWrap {

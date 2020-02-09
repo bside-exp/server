@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 import styles from './container.css'
-import Term from "./component/Term";
+import ExpRequestRegit from "./component/ExpRegit/ExpRequestRegit";
 
-class App extends Component{
-    render(){
+class App extends Component {
+    render() {
         return (
             <div className={styles.container}>
-                <Term/>
+                <ExpRequestRegit/>
             </div>
         )
     }

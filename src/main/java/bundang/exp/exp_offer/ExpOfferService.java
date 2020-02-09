@@ -69,9 +69,11 @@ public class ExpOfferService {
                 .expOfferTags(tags)
                 .build();
 
-        for (ExpOfferTag tag : tags) {
-            tag.setExpOffer(expOffer);
-            expOfferTagRepository.save(tag);
+        if (tags != null) {
+            for (ExpOfferTag tag : tags) {
+                tag.setExpOffer(expOffer);
+                expOfferTagRepository.save(tag);
+            }
         }
 
         expOfferRepository.save(expOffer);

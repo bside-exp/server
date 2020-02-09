@@ -1,0 +1,61 @@
+.container {
+    position: relative;
+    width: calc(100% - 40px);
+    height: 57px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.title {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #333333;
+}
+
+.content-box {
+    width: 100%;
+    position: absolute;
+    top: 24px;
+    left: 0px;
+}
+
+.content {
+    width: 100%;
+    border-width: 0;
+    font-family: AppleSDGothicNeo;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #000000;
+}
+
+.content::placeholder {
+    font-family: AppleSDGothicNeo;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: -0.36px;
+    color: #cccccc;
+}
+
+.line {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 1px;
+    width: 100%;
+    background-color: #e0e0e1;
+}

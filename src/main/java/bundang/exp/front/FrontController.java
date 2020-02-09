@@ -25,4 +25,14 @@ public class FrontController {
     public String page() {
         return "login.html";
     }
+
+    @GetMapping("exp_offer_regit")
+    public String expOfferRegit() {
+        return "expOfferRegit.html";
+    }
+
+    @GetMapping("exp_request_regit")
+    public String expRequestRegit() {
+        return "expRequestRegit.html";
+    }
 }

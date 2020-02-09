@@ -6,7 +6,9 @@ module.exports = {
 		join: ["@babel/polyfill", "./join.js"],
 
 		term: ["@babel/polyfill", "./term.js"],
-		login: ["@babel/polyfill", "./login.js"]
+		login: ["@babel/polyfill", "./login.js"],
+		expOfferRegit: ["@babel/polyfill", "./expOfferRegit.js"],
+		expRequestRegit: ["@babel/polyfill", "./expRequestRegit.js"]
 	},
 	devtool: 'sourcemaps',
 	cache: true,
@@ -16,7 +18,7 @@ module.exports = {
 	},
 	mode: 'none',
 	module: {
-		rules: [ {
+		rules: [{
 			test: /\.jsx?$/,
 			exclude: /(node_modules)/,
 			use: {
