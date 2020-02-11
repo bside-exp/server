@@ -41,7 +41,7 @@ public class User extends DateAudit {
     @JsonIgnore
     private String password;
 
-    @OneToMany
+    @ManyToMany
     private List<Role> roles = new ArrayList<>();
 
 
