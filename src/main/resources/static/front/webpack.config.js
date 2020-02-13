@@ -8,7 +8,8 @@ module.exports = {
 		term: ["@babel/polyfill", "./term.js"],
 		login: ["@babel/polyfill", "./login.js"],
 		expOfferRegit: ["@babel/polyfill", "./expOfferRegit.js"],
-		expRequestRegit: ["@babel/polyfill", "./expRequestRegit.js"]
+		expRequestRegit: ["@babel/polyfill", "./expRequestRegit.js"],
+		main: ["@babel/polyfill", "./main.js"]
 	},
 	devtool: 'sourcemaps',
 	cache: true,

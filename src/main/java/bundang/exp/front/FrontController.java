@@ -8,7 +8,7 @@ public class FrontController {
 
     @GetMapping("/")
     public String home() {
-        return "index.html";
+        return "main.html";
     }
 
     @GetMapping("/join")
