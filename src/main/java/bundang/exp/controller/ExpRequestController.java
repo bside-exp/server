@@ -33,8 +33,8 @@ public class ExpRequestController {
     private final ExpRequestService service;
 
     @GetMapping
-    public ResponseEntity<Page<ExpRequest>> list(@RequestParam Integer page) {
-        Pageable pageable = PageRequest.of(page - 1, 5, Sort.Direction.DESC, "id");
+    public ResponseEntity<Page<ExpRequest>> list(@RequestParam Integer page, @RequestParam(required = false) Integer size) {
+        Pageable pageable = PageRequest.of(page - 1, size != null ? size : 5, Sort.Direction.DESC, "id");
         return ResponseEntity.ok(requestRepository.findAll(pageable));
     }
 
