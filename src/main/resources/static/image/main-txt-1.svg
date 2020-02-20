@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="196" height="92" viewBox="0 0 196 92">
+    <g fill="none" fill-rule="evenodd">
+        <text fill="#79EEE0" font-family="SDGdGulim, Sandoll Gyeokdonggulim" font-size="30" letter-spacing="-1">
+            <tspan x="5" y="24">모두의 경험</tspan>
+        </text>
+        <path fill="#000" d="M5 42h91v23H5zM5 68h157v23H5z" opacity=".6"/>
+        <text fill="#FFF" font-family="NanumSquareRoundB, NanumSquareRound" font-size="16" font-weight="bold"
+              letter-spacing="-.889">
+            <tspan x="8" y="53">당신의 경험이</tspan>
+            <tspan x="8" y="80">모두의 자산이 되는 시대</tspan>
+        </text>
+    </g>
+</svg>

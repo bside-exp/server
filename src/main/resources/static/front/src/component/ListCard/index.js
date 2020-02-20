@@ -12,7 +12,7 @@ export default class ListCard extends Component {
                 <div className={styles.title}>{this.props.title}</div>
                 <div className={styles.content}>{this.props.content}</div>
                 <div className={styles.user}>
-                    {this.props.firm}・{this.props.duration}개월・{this.props.type}
+                    {this.props.bottom}
                 </div>
             </div>
         )

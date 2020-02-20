@@ -6,14 +6,12 @@ import Password from "./Password";
 import RectBtn from "./RectBtn";
 import Additive from "./Additive";
 import axios from 'axios'
-import Sidebar from "../Sidebar";
 
 export default class Login extends Component {
 
     state = {
         email: '',
-        password: '',
-        sidebar: false
+        password: ''
     }
 
     onEmailChange = (e) => {
@@ -41,19 +39,11 @@ export default class Login extends Component {
         window.close()
     }
 
-    toggleSidebar = () => {
-        this.setState({
-            ...this.state,
-            sidebar: !this.state.sidebar
-        })
-    }
-
     render() {
 
         return (
             <div className={styles.container}>
-                <Sidebar display={this.state.sidebar} toggle={this.toggleSidebar}/>
-                <Nav class={styles.nav} onRight={this.toggleSidebar}/>
+                <Nav class={styles.nav} onRight={window.close}/>
                 <img src="/image/logo.svg" className={styles.logo}/>
                 <span className={styles.welcome}>경험공유에 오신 것을 환영합니다.</span>
                 <EamilInput onChange={this.onEmailChange}/>

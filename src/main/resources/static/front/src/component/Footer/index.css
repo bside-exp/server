@@ -1,0 +1,23 @@
+.container {
+    width: 375px;
+    height: 76px;
+    background-color: #f2f5f7;
+
+    display: table;
+}
+
+.text {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+
+    opacity: 0.5;
+    font-family: AppleSDGothicNeo;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #000000;
+}
