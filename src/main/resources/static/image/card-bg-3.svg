@@ -1,0 +1,23 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="210" height="130"
+     viewBox="0 0 210 130">
+    <defs>
+        <rect id="a" width="210" height="130" rx="5"/>
+        <filter id="b" width="101.9%" height="103.1%" x="-1%" y="-.8%" filterUnits="objectBoundingBox">
+            <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation=".5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="c" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <g fill-rule="nonzero">
+            <use fill="#000" filter="url(#b)" xlink:href="#a"/>
+            <use fill="#2D2F4F" xlink:href="#a"/>
+        </g>
+        <text fill="#FFF" font-family="SDGdGulim, Sandoll Gyeokdonggulim" font-size="340" mask="url(#c)" opacity=".05">
+            <tspan x="-46" y="73">유</tspan>
+        </text>
+    </g>
+</svg>

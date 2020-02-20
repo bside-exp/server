@@ -1,0 +1,78 @@
+.card {
+    position: relative;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 158px;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.title {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    text-align: left;
+    overflow: hidden;
+    width: 315px;
+    font-family: AppleSDGothicNeo;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: -0.7px;
+    color: #000000;
+
+    text-overflow: ellipsis;
+}
+
+.content {
+    width: 315px;
+    height: 4.2em;
+    position: absolute;
+    top: 51px;
+    left: 20px;
+
+    overflow: hidden;
+    text-align: left;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    font-family: AppleSDGothicNeo;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -0.41px;
+    color: #4c4c4c;
+}
+
+.user {
+    text-align: left;
+    overflow: hidden;
+    width: 315px;
+    display: inline-block;
+    width: 315px;
+    position: absolute;
+    bottom: 17px;
+    left: 20px;
+
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.54;
+    letter-spacing: normal;
+    color: #999999;
+    text-overflow: ellipsis;
+}

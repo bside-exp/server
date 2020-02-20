@@ -1,0 +1,221 @@
+.container {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background-color: #f2f5f7;
+    display: inline-block;
+}
+
+@font-face {
+    font-family: AppleSDGothicNeo;
+    src: url("/font/AppleSDGothicNeoL.ttf");
+}
+
+.top-block {
+    height: 44px;
+}
+
+.search {
+    position: absolute;
+    top: 435px;
+    left: 20px;
+    width: 335px;
+    height: 54px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+    z-index: 1;
+}
+
+.search .text {
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    opacity: 0.3;
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #000000;
+}
+
+.search .img {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.top-box {
+    position: relative;
+    width: 375px;
+    height: 418px;
+    object-fit: contain;
+    background-image: url("/image/main-img-1.jpg");
+}
+
+.main-txt {
+    position: absolute;
+    top: 48px;
+    left: 20px;
+}
+
+.offer-box .top {
+    position: relative;
+    width: calc(100% - 40px);
+    padding-top: 51px;
+
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: left;
+
+}
+
+.request-box .top {
+    position: relative;
+    width: calc(100% - 40px);
+    padding-top: 20px;
+
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: left;
+
+}
+
+.top .title {
+    font-family: AppleSDGothicNeo;
+    font-size: 20px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -1.05px;
+    color: #000000;
+}
+
+.top .more {
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+    bottom: 5px;
+    display: inline-block;
+    font-family: AppleSDGothicNeo;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.47px;
+    text-align: right;
+    color: #888888;
+}
+
+.offers {
+    margin-top: 10px;
+}
+
+.more-offer-box {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.more-offer {
+    display: inline-block;
+    width: 144px;
+    height: 42px;
+    border-radius: 21px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.more-offer .text {
+    position: relative;
+    top: 7px;
+}
+
+.sidebar {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+}
+
+.offer-box {
+    background-color: #f2f5f7;
+}
+
+.request-box {
+    background-color: #ffffff;
+}
+
+.request-box .requests {
+    margin-top: 10px;
+    padding-bottom: 20px;
+    height: 130px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    text-align: left;
+}
+
+.requests::-webkit-scrollbar {
+    display: none;
+}
+
+.request-card {
+    position: relative;
+    margin-left: 8px;
+    display: inline-block;
+    width: 210px;
+    height: 130px;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    background-color: #2d2f4f;
+}
+
+.request-card .meta {
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    font-family: AppleSDGothicNeo;
+    font-size: 13px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.54;
+    letter-spacing: normal;
+    color: #ff7070;
+}
+
+.request-card .title {
+    display: inline-block;
+    position: absolute;
+    top: 52px;
+    left: 20px;
+    font-family: AppleSDGothicNeo;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: -0.63px;
+    color: #ffffff;
+}
+
+.request-card.bg1 {
+    background-image: url("/image/card-bg-1.svg");
+}
+
+.request-card.bg2 {
+    background-image: url("/image/card-bg-2.svg");
+}
+
+.request-card.bg3 {
+    background-image: url("/image/card-bg-3.svg");
+}

@@ -8,31 +8,36 @@ public class FrontController {
 
     @GetMapping("/")
     public String home() {
-        return "index.html";
+        return "main.html";
     }
 
     @GetMapping("/join")
     public String join() {
-        return "join.html";
+        return "/join.html";
     }
 
     @GetMapping("/term")
     public String term() {
-        return "term.html";
+        return "/term.html";
     }
 
     @GetMapping("/login")
     public String page() {
-        return "login.html";
+        return "/login.html";
     }
 
-    @GetMapping("exp_offer_regit")
+    @GetMapping("/exp_offer")
+    public String expOffer() {
+        return "/login.html";
+    }
+
+    @GetMapping("/exp_offer/regit")
     public String expOfferRegit() {
-        return "expOfferRegit.html";
+        return "/expOfferRegit.html";
     }
 
-    @GetMapping("exp_request_regit")
+    @GetMapping("/exp_request/regit")
     public String expRequestRegit() {
-        return "expRequestRegit.html";
+        return "/expRequestRegit.html";
     }
 }
