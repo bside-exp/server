@@ -5,26 +5,28 @@ import Footer from "../Footer";
 import axios from 'axios'
 import ListCard from "../ListCard";
 import Sidebar from "../Sidebar";
+import scroll from '../../util/Scroll'
 
-export default class ExpOfferList extends Component {
+export default class ExpRequestList extends Component {
 
     state = {
         page: 1,
-        offers: [],
+        requests: [],
         sidebar: false
     }
 
     call = async () => {
-        const url = '/api/exp-offer?&page=' + this.state.page
-        const offers = (await axios.get(url)).data.content
+        const url = '/api/exp-request?&page=' + this.state.page
+        const requests = (await axios.get(url)).data.content
 
-        const next = this.state.offers.concat(offers)
+        const next = this.state.requests.concat(requests)
         this.setState({
             ...this.state,
-            offers: next,
+            requests: next,
             page: this.state.page + 1
         })
     }
+
     toggleSidebar = () => {
         this.setState({
             ...this.state,
@@ -32,45 +34,38 @@ export default class ExpOfferList extends Component {
         })
     }
 
-    scroll = () => {
-        let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)
-        let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop)
-        let clientHeight = document.documentElement.clientHeight
-
-        if (scrollTop + clientHeight === scrollHeight) {
-            this.call()
-        }
+    scrolls = () => {
+        scroll(this.call)
     }
 
     componentDidMount() {
         this.call()
-        window.addEventListener('scroll', this.scroll, true)
+        window.addEventListener('scroll', this.scrolls, true)
     }
 
     render() {
 
-        const offers = this.state.offers.map((offer) => {
+        const requests = this.state.requests.map((requests) => {
 
             let types = ''
-            offer.expOfferTypes.forEach((type) => {
+            requests.expOfferTypes.forEach((type) => {
                 types = types + "・" + type.name
             })
 
-            const bottom = offer.firmName + "・" + offer.expDuration + "개월 근무" + types
+            const bottom = requests.industry.name + "・" + requests.duty.name + types
 
             return (
-                <ListCard style={styles.offers} title={offer.title} content={offer.description}
+                <ListCard style={styles.offers} title={requests.title} content={requests.description}
                           bottom={bottom}/>
             )
         })
-
         return (
             <div className={styles.container}>
                 <Sidebar toggle={this.toggleSidebar} display={this.state.sidebar}/>
                 <div className={styles['top-block']}></div>
                 <Nav sidebar={this.toggleSidebar}/>
                 <div className={styles.list}>
-                    {offers}
+                    {requests}
                 </div>
                 <Footer/>
             </div>

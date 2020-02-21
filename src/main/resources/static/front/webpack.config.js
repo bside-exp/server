@@ -10,7 +10,8 @@ module.exports = {
 		expOfferRegit: ["@babel/polyfill", "./expOfferRegit.js"],
 		expRequestRegit: ["@babel/polyfill", "./expRequestRegit.js"],
 		main: ["@babel/polyfill", "./main.js"],
-		expOfferList: ["@babel/polyfill", "./expOfferList.js"]
+		expOfferList: ["@babel/polyfill", "./expOfferList.js"],
+		expRequestList: ["@babel/polyfill", "./expRequestList.js"]
 	},
 	devtool: 'sourcemaps',
 	cache: true,

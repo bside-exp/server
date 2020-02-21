@@ -4,6 +4,7 @@ import styles from './Nav.css'
 export default class Nav extends Component {
 
     render() {
+        const sidebar = this.props.sidebar;
 
         return (
             <div className={styles.Nav}>
@@ -17,7 +18,7 @@ export default class Nav extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={styles.right} onClick={this.props.sidebar}>
+                <div className={styles.right} onClick={sidebar}>
                     <img className={styles.img} src="/image/combined-shape-w.svg"/>
                 </div>
             </div>
