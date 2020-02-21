@@ -28,7 +28,12 @@ public class FrontController {
 
     @GetMapping("/exp_offer")
     public String expOffer() {
-        return "/login.html";
+        return "/expOfferList.html";
+    }
+
+    @GetMapping("/exp_request")
+    public String expRequest() {
+        return "/expRequestList.html";
     }
 
     @GetMapping("/exp_offer/regit")
