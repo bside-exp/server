@@ -1,8 +1,13 @@
 import React, {Component} from 'react'
 import styles from './index.module.css'
 import Profile from "./Profile";
+import {moveToOfferList, moveToOfferRegit, moveToRequestList, moveToRequestRegit} from "../../util/Location";
 
 export default class Sidebar extends Component {
+
+    state = {
+        login: false
+    }
 
     defaultProps = {
         display: false
@@ -18,6 +23,9 @@ export default class Sidebar extends Component {
 
     logout = () => {
         localStorage.removeItem("expAccessToken")
+        this.setState({
+            login: !this.state.login
+        })
     }
 
     login = () => {
@@ -59,18 +67,18 @@ export default class Sidebar extends Component {
                             <span className={styles.text}>25</span>
                         </div>
                     </div>
-                    <div id="요청" className={styles.con24}>
+                    <div id="요청" className={styles.con24} onClick={moveToRequestRegit}>
                         <img src="/image/pencel.svg" className={styles.icon}/>
                         <span className={styles.text}>경험 요청서 작성</span>
                     </div>
-                    <div id="제공" className={[styles.con24, styles.b].join(' ')}>
+                    <div id="제공" className={[styles.con24, styles.b].join(' ')} onClick={moveToOfferRegit}>
                         <img src="/image/pencel.svg" className={styles.icon}/>
                         <span className={styles.text}>나의 경험 작성</span>
                     </div>
                     <div className={styles.line}/>
                     <div className={styles.lbox}>
-                        <p className={[styles.text, styles.m].join(' ')}>경험 요청 리스트</p>
-                        <p className={[styles.text, styles.m].join(' ')}>경험 제공 리스트</p>
+                        <p className={[styles.text, styles.m].join(' ')} onClick={moveToRequestList}>경험 요청 리스트</p>
+                        <p className={[styles.text, styles.m].join(' ')} onClick={moveToOfferList}>경험 제공 리스트</p>
                         <p className={styles.text}>태그로 보기</p>
                     </div>
                     <div className={styles.qbox}>

@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import styles from './index.css'
-import Nav from "./Nav";
 import Footer from "../Footer";
 import axios from 'axios'
 import ListCard from "../ListCard";
 import Sidebar from "../Sidebar";
+import NavBack from "../NavBack";
 
 export default class ExpOfferList extends Component {
 
@@ -72,7 +72,7 @@ export default class ExpOfferList extends Component {
             <div className={styles.container}>
                 <Sidebar toggle={this.toggleSidebar} display={this.state.sidebar}/>
                 <div className={styles['top-block']}></div>
-                <Nav sidebar={this.toggleSidebar}/>
+                <NavBack style={styles.nav} right={this.toggleSidebar}>경험 제공</NavBack>
                 <div className={styles.list}>
                     {offers}
                 </div>

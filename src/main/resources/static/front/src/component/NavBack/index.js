@@ -4,7 +4,8 @@ import styles from './index.css'
 export default class NavBack extends Component {
 
     left = () => {
-        this.props.left()
+        const call = this.props.left ? this.props.left : history.back()
+        call()
     }
 
     right = () => {
@@ -13,8 +14,6 @@ export default class NavBack extends Component {
 
     render() {
         const propStyle = this.props.style ? this.props.style : ''
-
-        console.log(propStyle)
 
         return (
             <div className={[styles.Nav, propStyle].join(' ')}>
