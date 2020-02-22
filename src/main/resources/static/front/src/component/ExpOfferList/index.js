@@ -56,11 +56,15 @@ export default class ExpOfferList extends Component {
                 types = types + "・" + type.name
             })
 
+            const call = () => {
+                location.href = `/exp_offers/${offer.id}`
+            }
+
             const bottom = offer.firmName + "・" + offer.expDuration + "개월 근무" + types
 
             return (
                 <ListCard style={styles.offers} title={offer.title} content={offer.description}
-                          bottom={bottom}/>
+                          bottom={bottom} onClick={call}/>
             )
         })
 

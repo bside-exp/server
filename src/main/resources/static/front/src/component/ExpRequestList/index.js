@@ -54,9 +54,13 @@ export default class ExpRequestList extends Component {
 
             const bottom = requests.industry.name + "・" + requests.duty.name + types
 
+            const call = () => {
+                location.href = `/exp_requests/${requests.id}`
+            }
+
             return (
                 <ListCard style={styles.offers} title={requests.title} content={requests.description}
-                          bottom={bottom}/>
+                          bottom={bottom} onClick={call}/>
             )
         })
         return (

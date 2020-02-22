@@ -51,11 +51,11 @@ export default class Main extends Component {
     }
 
     moveToOffers = () => {
-        location.href = '/exp_offer'
+        location.href = '/exp_offers'
     }
 
     moveToRequests = () => {
-        location.href = '/exp_request'
+        location.href = '/exp_requests'
     }
 
     moveToSearch = () => {
@@ -71,11 +71,15 @@ export default class Main extends Component {
                 types = types + "・" + type.name
             })
 
+            const call = () => {
+                location.href = `/exp_offers/${offer.id}`
+            }
+
             const bottom = offer.firmName + "・" + offer.expDuration + "개월" + types
 
             return (
                 <ListCard style={styles.offers} title={offer.title} content={offer.description}
-                          bottom={bottom}/>
+                          bottom={bottom} onClick={call}/>
             )
         })
 
@@ -85,8 +89,12 @@ export default class Main extends Component {
 
             const bg = 'bg' + (index + 1)
 
+            const call = () => {
+                location.href = `/exp_requests/${request.id}`
+            }
+
             return (
-                <div className={[styles['request-card'], styles[bg]].join(' ')}>
+                <div className={[styles['request-card'], styles[bg]].join(' ')} onClick={call}>
                     <div className={styles.meta}>{top}</div>
                     <div className={styles.title}>{request.title}</div>
                 </div>
