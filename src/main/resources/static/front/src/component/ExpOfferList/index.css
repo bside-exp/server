@@ -1,0 +1,32 @@
+.container {
+    background-color: #f2f5f7;
+}
+
+@font-face {
+    font-family: AppleSDGothicNeoSB;
+    src: url("/font/AppleSDGothicNeoSB.ttf");
+}
+
+@font-face {
+    font-family: AppleSDGothicNeoM;
+    src: url("/font/AppleSDGothicNeoM.ttf");
+}
+
+@font-face {
+    font-family: AppleSDGothicNeoR;
+    src: url("/font/AppleSDGothicNeoR.ttf");
+}
+
+.top-block {
+    height: 44px;
+    weight: 100%;
+}
+
+.offers {
+    margin-top: 10px;
+}
+
+.list {
+    width: 100%;
+    background-color: #f2f5f7;
+}
