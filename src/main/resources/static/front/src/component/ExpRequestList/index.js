@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import styles from './index.css'
-import Nav from "./Nav";
 import Footer from "../Footer";
 import axios from 'axios'
 import ListCard from "../ListCard";
 import Sidebar from "../Sidebar";
 import scroll from '../../util/Scroll'
+import NavBack from "../NavBack";
 
 export default class ExpRequestList extends Component {
 
@@ -67,7 +67,7 @@ export default class ExpRequestList extends Component {
             <div className={styles.container}>
                 <Sidebar toggle={this.toggleSidebar} display={this.state.sidebar}/>
                 <div className={styles['top-block']}></div>
-                <Nav sidebar={this.toggleSidebar}/>
+                <NavBack style={styles.nav} right={this.toggleSidebar}>경험 요청</NavBack>
                 <div className={styles.list}>
                     {requests}
                 </div>

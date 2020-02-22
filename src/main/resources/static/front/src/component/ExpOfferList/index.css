@@ -17,6 +17,10 @@
     src: url("/font/AppleSDGothicNeoR.ttf");
 }
 
+.nav {
+    background-color: #4e354f;
+}
+
 .top-block {
     height: 44px;
     weight: 100%;
