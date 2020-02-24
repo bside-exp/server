@@ -1,0 +1,189 @@
+@font-face {
+    font-family: AppleSDGothicNeoSB;
+    src: url("/font/AppleSDGothicNeoSB.ttf");
+}
+
+@font-face {
+    font-family: AppleSDGothicNeoM;
+    src: url("/font/AppleSDGothicNeoM.ttf");
+}
+
+@font-face {
+    font-family: AppleSDGothicNeoR;
+    src: url("/font/AppleSDGothicNeoR.ttf");
+}
+
+.top-block {
+    width: 100%;
+    height: 44px;
+}
+
+.container {
+    position: relative;
+    background-color: white;
+}
+
+.nav {
+    background-color: #4e354f;
+}
+
+.top-box {
+    position: relative;
+    height: 197px;
+    background-color: #4e354f;
+    text-align: left;
+}
+
+.top-box .title {
+    padding-top: 29px;
+    margin-left: 20px;
+    width: 244px;
+    height: 72px;
+
+
+    text-align: left;
+    font-family: AppleSDGothicNeoSB;
+    font-size: 30px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: #f6a138;
+
+    overflow: hidden;
+    text-align: left;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.top-box .middle {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 14px;
+
+    font-family: AppleSDGothicNeoR;
+    opacity: 0.8;
+    font-size: 14px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+
+.top-box .bottom {
+    margin-left: 20px;
+
+    opacity: 0.3;
+    font-family: AppleSDGothicNeoR;
+    font-size: 13px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.54;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+
+.main-box {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 46px;
+
+    font-family: AppleSDGothicNeoR;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.75;
+    letter-spacing: -0.32px;
+    color: #000000;
+    text-align: left;
+}
+
+.tags {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 15px;
+
+    text-align: left;
+
+    font-family: AppleSDGothicNeoR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.47px;
+    color: #888888;
+}
+
+.line {
+    width: calc(100% - 40px);
+    height: 1px;
+    background-color: #000000;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+.btn-box {
+    position: absolute;
+    top: 260px;
+    right: 0px;
+}
+
+.btn-dlt {
+    display: inline-block;
+    width: 83px;
+    height: 57px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    background-color: #f6a138;
+}
+
+.btn-mdf {
+    display: inline-block;
+    width: 83px;
+    height: 57px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    background-color: #f6a138;
+    margin-left: 8px;
+}
+
+.btn-req {
+    display: inline-block;
+    width: 146px;
+    height: 57px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    background-color: #f6a138;
+}
+
+.btn-tbl {
+    width: 100%;
+    height: 100%;
+    display: table;
+    text-align: center;
+}
+
+.btn-text {
+    display: table-cell;
+    vertical-align: middle;
+
+    font-family: AppleSDGothicNeoSB;
+    font-size: 18px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.36px;
+    color: #4e354f;
+}

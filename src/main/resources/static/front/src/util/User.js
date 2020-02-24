@@ -15,7 +15,11 @@ export function removeAccessToken() {
 export function getDecodedToken() {
     const token = getAccessToken()
 
-    return jwt_decode(token)
+    if (token) {
+        return jwt_decode(token)
+    } else {
+        return ''
+    }
 }
 
 export function getEmail() {
