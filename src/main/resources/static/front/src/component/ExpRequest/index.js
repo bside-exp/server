@@ -7,14 +7,14 @@ import {getDecodedToken} from "../../util/User";
 import Footer from "../Footer";
 import {convertOfferTypeString} from "../../util/CommonUtil";
 
-export default class ExpOffer extends Component {
+export default class ExpRequest extends Component {
     state = {
         data: '',
         sidebar: false
     }
 
     call = async (id) => {
-        const url = `/api/exp-offer/${id}`
+        const url = `/api/exp-request/${id}`
         const item = await axios.get(url)
         this.setState({
             ...this.state,
@@ -44,14 +44,14 @@ export default class ExpOffer extends Component {
         const dateCrop = date ? date.split("T")[0] : ''
         const nickname = user ? user.nickName + ' ' : ''
         const userId = user ? user.id : ''
-        const tags = this.state.data.expOfferTags ? this.state.data.expOfferTags : []
+        const tags = this.state.data.tags ? this.state.data.tags : []
         const types = this.state.data.expOfferTypes ? this.state.data.expOfferTypes : []
         const industry = this.state.data.industry ? this.state.data.industry.name : ''
         const duty = this.state.data.duty ? this.state.data.duty.name : ''
 
         let tagString = ''
         for (let tag in tags) {
-            tagString = tagString + ' #' + tags[tag].tag
+            tagString = tagString + ' #' + tags[tag].name
         }
         let offerTypeString = ''
         for (let type in types) {

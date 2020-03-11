@@ -24,13 +24,13 @@
 }
 
 .nav {
-    background-color: #4e354f;
+    background-color: #2d2f4f;
 }
 
 .top-box {
     position: relative;
     height: 197px;
-    background-color: #4e354f;
+    background-color: #2d2f4f;
     text-align: left;
 }
 
@@ -48,7 +48,7 @@
     font-style: normal;
     line-height: 1.2;
     letter-spacing: -1px;
-    color: #f6a138;
+    color: #7bffef;
 
     overflow: hidden;
     text-align: left;
@@ -148,7 +148,7 @@
     height: 57px;
     border-radius: 6px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    background-color: #f6a138;
+    background-color: #7ff9ea;
 }
 
 .btn-mdf {
@@ -157,7 +157,7 @@
     height: 57px;
     border-radius: 6px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    background-color: #f6a138;
+    background-color: #7ff9ea;
     margin-left: 8px;
 }
 
@@ -167,7 +167,7 @@
     height: 57px;
     border-radius: 6px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    background-color: #f6a138;
+    background-color: #7ff9ea;
 }
 
 .btn-tbl {
