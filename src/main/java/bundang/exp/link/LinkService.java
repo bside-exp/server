@@ -8,28 +8,59 @@ import bundang.exp.exp_request.repository.ExpRequestRepository;
 import bundang.exp.notice.CreateNoticeDto;
 import bundang.exp.notice.NoticeService;
 import bundang.exp.user.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class LinkService {
-    private NoticeService noticeService;
-    private ExpRequestRepository expRequestRepository;
-    private ExpOfferRepository expOfferRepository;
-    private UserRepository userRepository;
-    private LinkRepository linkRepository;
+    private final NoticeService noticeService;
+    private final ExpRequestRepository expRequestRepository;
+    private final ExpOfferRepository expOfferRepository;
+    private final UserRepository userRepository;
+    private final LinkRepository linkRepository;
+
+    public List<Link> getLinkByOfferIdandRequester(Long offerId, Long userId) {
+        ExpOffer offer = expOfferRepository.getOne(offerId);
+        List<Link> links = linkRepository.findByOffer(offer);
+        return links.stream().filter(link -> link.getRequest().getUser().getId().equals(userId))
+                .collect(Collectors.toList());
+    }
+
+    public List<Link> getLinkByRequestIdAndProvider(Long requestId, Long userId) {
+        ExpRequest request = expRequestRepository.getOne(requestId);
+        List<Link> links = linkRepository.findByRequest(request);
+        return links.stream().filter(link -> link.getOffer().getUser().getId().equals(userId))
+                .collect(Collectors.toList());
+    }
 
     @Transactional
-    public void createLinkByRequest(CreateLinkDto createLinkDto) throws ExpException {
-        ExpRequest request = expRequestRepository.getOne(createLinkDto.getExpRequestId());
-        ExpOffer offer = expOfferRepository.getOne(createLinkDto.getExpOfferId());
+    public void linkByRequest(LinkDto linkDto) throws ExpException {
+        ExpRequest request = expRequestRepository.getOne(linkDto.getExpRequestId());
+        ExpOffer offer = expOfferRepository.getOne(linkDto.getExpOfferId());
+
+        Optional<Link> linkOptional = linkRepository.findByRequestAndOffer(request, offer);
+        if (linkOptional.isPresent()) {
+            confirmLinkByRequest(linkDto);
+        } else {
+            createLinkByRequest(linkDto);
+        }
+    }
+
+    private void createLinkByRequest(LinkDto linkDto) throws ExpException {
+        ExpRequest request = expRequestRepository.getOne(linkDto.getExpRequestId());
+        ExpOffer offer = expOfferRepository.getOne(linkDto.getExpOfferId());
 
         Link link = Link.builder()
                 .request(request)
                 .offer(offer)
-                .requester(true)
-                .provider(false)
+                .requester(new Boolean(true))
+                .provider(new Boolean(false))
                 .build();
 
         linkRepository.save(link);
@@ -41,31 +72,9 @@ public class LinkService {
         noticeService.createNotice(offer.getUser().getId(), createNoticeDto);
     }
 
-    @Transactional
-    public void createLinkByOffer(CreateLinkDto createLinkDto) throws ExpException {
-        ExpRequest request = expRequestRepository.getOne(createLinkDto.getExpRequestId());
-        ExpOffer offer = expOfferRepository.getOne(createLinkDto.getExpOfferId());
-
-        Link link = Link.builder()
-                .request(request)
-                .offer(offer)
-                .requester(false)
-                .provider(true)
-                .build();
-
-        linkRepository.save(link);
-
-        CreateNoticeDto createNoticeDto = CreateNoticeDto.builder()
-                .title("경험 제공이 있습니다.")
-                .link("/exp_offer/" + offer.getId())
-                .build();
-        noticeService.createNotice(request.getUser().getId(), createNoticeDto);
-    }
-
-    @Transactional
-    public void confirmLinkByRequest(ConfirmLinkDto confirmLinkDto) throws ExpException {
-        ExpRequest request = expRequestRepository.getOne(confirmLinkDto.getRequestId());
-        ExpOffer offer = expOfferRepository.getOne(confirmLinkDto.getOfferId());
+    private void confirmLinkByRequest(LinkDto confirmLinkDto) throws ExpException {
+        ExpRequest request = expRequestRepository.getOne(confirmLinkDto.getExpRequestId());
+        ExpOffer offer = expOfferRepository.getOne(confirmLinkDto.getExpOfferId());
 
         Link link = linkRepository.findByRequestAndOffer(request, offer)
                 .orElseThrow(() -> new ExpException("잘못된 요청입니다."));
@@ -87,9 +96,41 @@ public class LinkService {
     }
 
     @Transactional
-    public void confirmLinkByOffer(ConfirmLinkDto confirmLinkDto) throws ExpException {
-        ExpRequest request = expRequestRepository.getOne(confirmLinkDto.getRequestId());
-        ExpOffer offer = expOfferRepository.getOne(confirmLinkDto.getOfferId());
+    public void linkByOffer(LinkDto linkDto) throws ExpException {
+        ExpRequest request = expRequestRepository.getOne(linkDto.getExpRequestId());
+        ExpOffer offer = expOfferRepository.getOne(linkDto.getExpOfferId());
+
+        Optional<Link> linkOptional = linkRepository.findByRequestAndOffer(request, offer);
+        if (linkOptional.isPresent()) {
+            confirmLinkByOffer(linkDto);
+        } else {
+            createLinkByOffer(linkDto);
+        }
+    }
+
+    private void createLinkByOffer(LinkDto linkDto) throws ExpException {
+        ExpRequest request = expRequestRepository.getOne(linkDto.getExpRequestId());
+        ExpOffer offer = expOfferRepository.getOne(linkDto.getExpOfferId());
+
+        Link link = Link.builder()
+                .request(request)
+                .offer(offer)
+                .requester(false)
+                .provider(true)
+                .build();
+
+        linkRepository.save(link);
+
+        CreateNoticeDto createNoticeDto = CreateNoticeDto.builder()
+                .title("경험 제공이 있습니다.")
+                .link("/exp_offer/" + offer.getId())
+                .build();
+        noticeService.createNotice(request.getUser().getId(), createNoticeDto);
+    }
+
+    private void confirmLinkByOffer(LinkDto confirmLinkDto) throws ExpException {
+        ExpRequest request = expRequestRepository.getOne(confirmLinkDto.getExpRequestId());
+        ExpOffer offer = expOfferRepository.getOne(confirmLinkDto.getExpOfferId());
 
         Link link = linkRepository.findByRequestAndOffer(request, offer)
                 .orElseThrow(() -> new ExpException("잘못된 요청입니다."));

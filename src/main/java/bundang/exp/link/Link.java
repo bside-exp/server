@@ -21,7 +21,9 @@ public class Link {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private Boolean requester;
+    @Column
     private Boolean provider;
     @ManyToOne
     private ExpRequest request;
