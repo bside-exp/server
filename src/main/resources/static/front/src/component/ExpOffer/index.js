@@ -3,17 +3,19 @@ import styles from './index.css'
 import axios from 'axios'
 import NavBack from "../NavBack";
 import Sidebar from "../Sidebar";
-import {getDecodedToken} from "../../util/User";
+import {getAccessToken, getDecodedToken} from "../../util/User";
 import Footer from "../Footer";
 import {convertOfferTypeString} from "../../util/CommonUtil";
 import LinkPopup from "./LinkPopup";
+import {getLinkByOfferAndRequester} from "../../util/Link";
 
 export default class ExpOffer extends Component {
     state = {
         data: '',
         sidebar: false,
         id: '',
-        popup: false
+        popup: false,
+        link: ''
     }
 
     call = async (id) => {
@@ -23,8 +25,15 @@ export default class ExpOffer extends Component {
             ...this.state,
             data: item.data
         })
+    }
 
-        console.log(item)
+    getLinkAndSet = () => {
+        getLinkByOfferAndRequester(this.state.id, getAccessToken()).then(data => {
+            this.setState({
+                ...this.state,
+                link: data
+            })
+        })
     }
 
     componentDidMount() {
@@ -34,6 +43,12 @@ export default class ExpOffer extends Component {
             id: id
         })
         this.call(id)
+        getLinkByOfferAndRequester(id, getAccessToken()).then(data => {
+            this.setState({
+                ...this.state,
+                link: data
+            })
+        })
     }
 
     toggleSidebar = () => {
@@ -77,7 +92,6 @@ export default class ExpOffer extends Component {
 
         const token = getDecodedToken()
 
-
         let button = ''
         if (userId === parseInt(token.sub)) {
             button = (
@@ -95,28 +109,35 @@ export default class ExpOffer extends Component {
                 </div>
             )
         } else {
+            let style = {}
+            if (this.state.link.id) {
+                style = {
+                    backgroundColor: "#bfb0c0",
+                    pointerEvents: "none"
+                }
+            }
             button = (
-                <div className={styles['btn-box']} onClick={this.togglePopup}>
-                    <div className={styles['btn-req']}>
+                <div className={styles['btn-box']}>
+                    <div className={styles['btn-req']} onClick={this.togglePopup} style={style}>
                         <div className={styles['btn-tbl']}>
                             <div className={styles['btn-text']}>경험 요청하기</div>
                         </div>
                     </div>
                 </div>
-            )
+            );
         }
 
         return (
             <Fragment>
                 <Sidebar toggle={this.toggleSidebar} display={this.state.sidebar}/>
                 <LinkPopup provider={this.state.data.user} toggle={this.togglePopup} display={this.state.popup}
-                           offerId={this.state.id}/>
+                           offerId={this.state.id} onFinish={this.getLinkAndSet}/>
                 <div className={styles.container}>
                     <div className={styles['top-block']}></div>
                     <NavBack style={styles.nav} right={this.toggleSidebar}>모두의 경험</NavBack>
                     <div className={styles['top-box']}>
                         <div className={styles.title}>
-                            {this.state.data.description}
+                            {this.state.data.title}
                         </div>
                         <div className={styles.middle}>{industry}・{duty}・{offerTypeString}</div>
                         <div className={styles.bottom}>

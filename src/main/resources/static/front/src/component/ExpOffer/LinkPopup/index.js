@@ -19,7 +19,7 @@ export default class LinkPopup extends Component {
         e.stopPropagation()
     }
 
-    submit = () => {
+    submit = async () => {
         const token = getAccessToken()
         const url = '/link/request'
 
@@ -33,9 +33,11 @@ export default class LinkPopup extends Component {
             expOfferId: offerId,
             expRequestId: requestId
         }
-        axios.post(url, data, {
+        await axios.post(url, data, {
             headers: headers
         })
+        this.props.onFinish()
+        this.toggle()
     }
 
     call = async () => {
@@ -47,7 +49,6 @@ export default class LinkPopup extends Component {
         const requests = (await axios.get(url, {
             headers: headers
         })).data
-        console.log(requests)
 
         this.setState({
             ...this.state,

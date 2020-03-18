@@ -1,6 +1,5 @@
 export const convertOfferTypeString = (offerType) => {
 
-    console.log(offerType)
     switch (offerType) {
         case 'Email 제공':
             return "Email";
