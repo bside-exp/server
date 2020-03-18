@@ -8,6 +8,7 @@ import bundang.exp.exp_request.dto.ExpRequestCommentDto;
 import bundang.exp.exp_request.dto.ExpRequestDto;
 import bundang.exp.exp_request.repository.ExpRequestCommentRepository;
 import bundang.exp.exp_request.repository.ExpRequestRepository;
+import bundang.exp.user.User;
 import bundang.exp.user.security.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -36,6 +38,12 @@ public class ExpRequestController {
     public ResponseEntity<Page<ExpRequest>> list(@RequestParam Integer page, @RequestParam(required = false) Integer size) {
         Pageable pageable = PageRequest.of(page - 1, size != null ? size : 5, Sort.Direction.DESC, "id");
         return ResponseEntity.ok(requestRepository.findAll(pageable));
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<ExpRequest>> userRequestList(Authentication authentication) {
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        return ResponseEntity.ok(requestRepository.findByUser(User.builder().id(userPrincipal.getId()).build()));
     }
 
     @GetMapping("/{id}")
