@@ -28,6 +28,12 @@ export function getEmail() {
     return token.email
 }
 
+export function getNickname() {
+    const token = getDecodedToken()
+
+    return token.nickname
+}
+
 export function getAuth() {
     return getDecodedToken().Authorities
 }

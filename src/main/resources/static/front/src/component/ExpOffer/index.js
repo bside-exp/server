@@ -6,11 +6,14 @@ import Sidebar from "../Sidebar";
 import {getDecodedToken} from "../../util/User";
 import Footer from "../Footer";
 import {convertOfferTypeString} from "../../util/CommonUtil";
+import LinkPopup from "./LinkPopup";
 
 export default class ExpOffer extends Component {
     state = {
         data: '',
-        sidebar: false
+        sidebar: false,
+        id: '',
+        popup: false
     }
 
     call = async (id) => {
@@ -26,6 +29,10 @@ export default class ExpOffer extends Component {
 
     componentDidMount() {
         const id = window.location.pathname.split('/').pop()
+        this.setState({
+            ...this.state,
+            id: id
+        })
         this.call(id)
     }
 
@@ -33,6 +40,13 @@ export default class ExpOffer extends Component {
         this.setState({
             ...this.state,
             sidebar: !this.state.sidebar
+        })
+    }
+
+    togglePopup = () => {
+        this.setState({
+            ...this.state,
+            popup: !this.state.popup
         })
     }
 
@@ -82,7 +96,7 @@ export default class ExpOffer extends Component {
             )
         } else {
             button = (
-                <div className={styles['btn-box']}>
+                <div className={styles['btn-box']} onClick={this.togglePopup}>
                     <div className={styles['btn-req']}>
                         <div className={styles['btn-tbl']}>
                             <div className={styles['btn-text']}>경험 요청하기</div>
@@ -95,6 +109,8 @@ export default class ExpOffer extends Component {
         return (
             <Fragment>
                 <Sidebar toggle={this.toggleSidebar} display={this.state.sidebar}/>
+                <LinkPopup provider={this.state.data.user} toggle={this.togglePopup} display={this.state.popup}
+                           offerId={this.state.id}/>
                 <div className={styles.container}>
                     <div className={styles['top-block']}></div>
                     <NavBack style={styles.nav} right={this.toggleSidebar}>모두의 경험</NavBack>
