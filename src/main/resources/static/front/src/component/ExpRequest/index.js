@@ -3,14 +3,19 @@ import styles from './index.css'
 import axios from 'axios'
 import NavBack from "../NavBack";
 import Sidebar from "../Sidebar";
-import {getDecodedToken} from "../../util/User";
+import {getAccessToken, getDecodedToken} from "../../util/User";
 import Footer from "../Footer";
 import {convertOfferTypeString} from "../../util/CommonUtil";
+import {getLinkByRequestAndProvider} from "../../util/Link";
+import LinkPopup from "./LinkPopup";
 
 export default class ExpRequest extends Component {
     state = {
         data: '',
-        sidebar: false
+        sidebar: false,
+        id: '',
+        popup: false,
+        link: ''
     }
 
     call = async (id) => {
@@ -20,19 +25,43 @@ export default class ExpRequest extends Component {
             ...this.state,
             data: item.data
         })
+    }
 
-        console.log(item)
+    getLinkAndSet = () => {
+        getLinkByRequestAndProvider(this.state.id, getAccessToken()).then(data => {
+            this.setState({
+                ...this.state,
+                link: data
+            })
+        })
     }
 
     componentDidMount() {
         const id = window.location.pathname.split('/').pop()
+        this.setState({
+            ...this.state,
+            id: id
+        })
         this.call(id)
+        getLinkByRequestAndProvider(id, getAccessToken()).then(data => {
+            this.setState({
+                ...this.state,
+                link: data
+            })
+        })
     }
 
     toggleSidebar = () => {
         this.setState({
             ...this.state,
             sidebar: !this.state.sidebar
+        })
+    }
+
+    togglePopup = () => {
+        this.setState({
+            ...this.state,
+            popup: !this.state.popup
         })
     }
 
@@ -81,11 +110,18 @@ export default class ExpRequest extends Component {
                 </div>
             )
         } else {
+            let style = {}
+            if (this.state.link.id) {
+                style = {
+                    backgroundColor: "#bfb0c0",
+                    pointerEvents: "none"
+                }
+            }
             button = (
                 <div className={styles['btn-box']}>
-                    <div className={styles['btn-req']}>
+                    <div className={styles['btn-req']} onClick={this.togglePopup} style={style}>
                         <div className={styles['btn-tbl']}>
-                            <div className={styles['btn-text']}>경험 요청하기</div>
+                            <div className={styles['btn-text']}>경험 제공하기</div>
                         </div>
                     </div>
                 </div>
@@ -95,6 +131,8 @@ export default class ExpRequest extends Component {
         return (
             <Fragment>
                 <Sidebar toggle={this.toggleSidebar} display={this.state.sidebar}/>
+                <LinkPopup requester={this.state.data.user} toggle={this.togglePopup} display={this.state.popup}
+                           requestId={this.state.id} onFinish={this.getLinkAndSet}/>
                 <div className={styles.container}>
                     <div className={styles['top-block']}></div>
                     <NavBack style={styles.nav} right={this.toggleSidebar}>모두의 경험</NavBack>

@@ -22,9 +22,9 @@ export const getLinkByRequestAndProvider = async (requestId, providerToken) => {
         "Authorization": "Bearer " + providerToken
     }
 
-    const result = await axios.get(url, {
+    const result = (await axios.get(url, {
         headers: headers
-    })
+    })).data
 
     return result
 }
