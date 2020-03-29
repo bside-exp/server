@@ -15,13 +15,23 @@ export function removeAccessToken() {
 export function getDecodedToken() {
     const token = getAccessToken()
 
-    return jwt_decode(token)
+    if (token) {
+        return jwt_decode(token)
+    } else {
+        return ''
+    }
 }
 
 export function getEmail() {
     const token = getDecodedToken()
 
     return token.email
+}
+
+export function getNickname() {
+    const token = getDecodedToken()
+
+    return token.nickname
 }
 
 export function getAuth() {

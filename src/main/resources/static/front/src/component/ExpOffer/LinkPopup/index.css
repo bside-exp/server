@@ -1,0 +1,170 @@
+.container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.popup {
+    width: calc(100% - 40px);
+    height: 400px;
+    background-color: white;
+
+    margin-left: 20px;
+    margin-right: 20px;
+
+    margin-top: 225px;
+    border-radius: 6px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.top {
+    font-family: AppleSDGothicNeo;
+    font-size: 19px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.26;
+    letter-spacing: -0.5px;
+    text-align: center;
+    color: #000000;
+
+    padding-top: 25px;
+    margin-bottom: 16px;
+}
+
+.top span {
+    font-weight: bold;
+}
+
+.content {
+    width: calc(100% - 40px);
+    height: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: left;
+}
+
+.black-line {
+    height: 1px;
+    background-color: #000000;
+}
+
+.gray-line {
+    height: 1px;
+    background-color: #efeff2;
+}
+
+.add {
+    cursor: pointer;
+    height: 54px;
+    width: 100%;
+}
+
+.add img {
+    margin-top: 14px;
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+.list {
+    overflow: scroll;
+    height: 216px;
+}
+
+.request {
+    cursor: pointer;
+    height: 54px;
+    width: 100%;
+}
+
+.request img {
+    margin-top: 14px;
+    width: 26px;
+    height: 26px;
+    border-radius: 15px;
+    border: solid 1px #e0e0e1;
+}
+
+.request span {
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: normal;
+    color: #222222;
+
+    margin-left: 10px;
+
+    position: relative;
+    top: -10px;
+}
+
+.add span {
+    position: relative;
+    top: -7px;
+    margin-left: 10px;
+
+    font-family: AppleSDGothicNeo;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: normal;
+    color: #222222;
+}
+
+.btn-box {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.cancel {
+    cursor: pointer;
+    display: inline-block;
+    width: calc(50% - 5px);
+    height: 48px;
+    border-radius: 5px;
+    border: solid 1px #e0e0e1;
+    background-color: #ffffff;
+}
+
+.cancel .table {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.cancel .cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.submit .table {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.submit .cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.submit {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 7px;
+    width: calc(50% - 5px);
+    height: 48px;
+    border-radius: 5px;
+    background-color: #4a65f6;
+}

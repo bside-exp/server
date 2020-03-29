@@ -3,17 +3,18 @@ const path = require('path');
 module.exports = {
 	context: path.resolve(__dirname, './src'),
 	entry: {
-        join: ["@babel/polyfill", "./join.js"],
+		join: ["@babel/polyfill", "./join.js"],
 
-        term: ["@babel/polyfill", "./term.js"],
-        login: ["@babel/polyfill", "./login.js"],
-        expOfferRegit: ["@babel/polyfill", "./expOfferRegit.js"],
-        expRequestRegit: ["@babel/polyfill", "./expRequestRegit.js"],
-        main: ["@babel/polyfill", "./main.js"],
-        expOfferList: ["@babel/polyfill", "./expOfferList.js"],
-        expRequestList: ["@babel/polyfill", "./expRequestList.js"],
-        expOffer: ["@babel/polyfill", "./expOffer.js"]
-    },
+		term: ["@babel/polyfill", "./term.js"],
+		login: ["@babel/polyfill", "./login.js"],
+		expOfferRegit: ["@babel/polyfill", "./expOfferRegit.js"],
+		expRequestRegit: ["@babel/polyfill", "./expRequestRegit.js"],
+		main: ["@babel/polyfill", "./main.js"],
+		expOfferList: ["@babel/polyfill", "./expOfferList.js"],
+		expRequestList: ["@babel/polyfill", "./expRequestList.js"],
+		expOffer: ["@babel/polyfill", "./expOffer.js"],
+		expRequest: ["@babel/polyfill", "./expRequest.js"]
+	},
 	devtool: 'sourcemaps',
 	cache: true,
 	output: {

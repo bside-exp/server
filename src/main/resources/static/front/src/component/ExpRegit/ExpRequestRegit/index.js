@@ -45,7 +45,7 @@ export default class ExpRequestRegit extends Component {
     setOffer = (offer) => {
         this.setState({
             ...this.state,
-            expOfferTypes: offer
+            types: offer
         })
     }
 

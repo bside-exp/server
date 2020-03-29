@@ -32,7 +32,8 @@ public class LinkController {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         List<Link> links = linkService.getLinkByRequestIdAndProvider(requestId, userPrincipal.getId());
 
-        return ResponseEntity.ok(links.get(0));
+        Link result = links.get(0).getProvider() ? links.get(0) : null;
+        return ResponseEntity.ok(result);
     }
 
     @PostMapping("/offer")
@@ -47,6 +48,7 @@ public class LinkController {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         List<Link> links = linkService.getLinkByOfferIdandRequester(offerId, userPrincipal.getId());
 
-        return ResponseEntity.ok(links.get(0));
+        Link result = links.get(0).getRequester() ? links.get(0) : null;
+        return ResponseEntity.ok(result);
     }
 }

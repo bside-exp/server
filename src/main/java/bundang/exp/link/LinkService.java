@@ -26,14 +26,14 @@ public class LinkService {
     private final LinkRepository linkRepository;
 
     public List<Link> getLinkByOfferIdandRequester(Long offerId, Long userId) {
-        ExpOffer offer = expOfferRepository.getOne(offerId);
+        ExpOffer offer = expOfferRepository.findById(offerId).get();
         List<Link> links = linkRepository.findByOffer(offer);
         return links.stream().filter(link -> link.getRequest().getUser().getId().equals(userId))
                 .collect(Collectors.toList());
     }
 
     public List<Link> getLinkByRequestIdAndProvider(Long requestId, Long userId) {
-        ExpRequest request = expRequestRepository.getOne(requestId);
+        ExpRequest request = expRequestRepository.findById(requestId).get();
         List<Link> links = linkRepository.findByRequest(request);
         return links.stream().filter(link -> link.getOffer().getUser().getId().equals(userId))
                 .collect(Collectors.toList());
