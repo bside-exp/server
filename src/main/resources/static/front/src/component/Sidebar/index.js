@@ -2,11 +2,14 @@ import React, {Component} from 'react'
 import styles from './index.module.css'
 import Profile from "./Profile";
 import {moveToOfferList, moveToOfferRegit, moveToRequestList, moveToRequestRegit} from "../../util/Location";
+import {getNewNoticeNum} from "../../util/Notice";
 
 export default class Sidebar extends Component {
 
     state = {
-        login: false
+        login: false,
+        newNotice: 0,
+        notices: []
     }
 
     defaultProps = {
@@ -32,6 +35,13 @@ export default class Sidebar extends Component {
         window.open("/login")
     }
 
+    componentDidMount() {
+        getNewNoticeNum().then(data => this.setState({
+            ...this.state,
+            newNotice: data
+        }))
+    }
+
     render() {
 
         const token = localStorage.getItem("expAccessToken")
@@ -54,6 +64,15 @@ export default class Sidebar extends Component {
             display: this.props.display ? 'inline' : 'none'
         }
 
+        let newNoticeNum = ''
+        if (this.state.newNotice) {
+            newNoticeNum = (
+                <div className={styles.noti}>
+                    <span className={styles.text}>{this.state.newNotice}</span>
+                </div>
+            )
+        }
+
         return (
             <div className={styles.container} style={style} onClick={this.toggle}>
                 <div className={styles.sidebar} onClick={this.clickSidebar}>
@@ -63,9 +82,7 @@ export default class Sidebar extends Component {
                     <div id="알림" className={styles.con24}>
                         <img src="/image/bell.svg" className={styles.icon}/>
                         <span className={styles.text}>알림</span>
-                        <div className={styles.noti}>
-                            <span className={styles.text}>25</span>
-                        </div>
+                        {newNoticeNum}
                     </div>
                     <div id="요청" className={styles.con24} onClick={moveToRequestRegit}>
                         <img src="/image/pencel.svg" className={styles.icon}/>
