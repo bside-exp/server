@@ -71,7 +71,6 @@ export default class ExpOfferList extends Component {
         return (
             <div className={styles.container}>
                 <Sidebar toggle={this.toggleSidebar} display={this.state.sidebar}/>
-                <div className={styles['top-block']}></div>
                 <NavBack style={styles.nav} right={this.toggleSidebar}>경험 제공</NavBack>
                 <div className={styles.list}>
                     {offers}

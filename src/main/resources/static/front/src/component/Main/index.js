@@ -104,7 +104,6 @@ export default class Main extends Component {
         return (
             <div className={styles.container}>
                 <Sidebar display={this.state.sidebar} toggle={this.toggleSidebar}/>
-                <div className={styles['top-block']}></div>
                 <div className={styles['top-box']}>
                     <img src="/image/combined-shape-w.svg" className={styles.sidebar} onClick={this.toggleSidebar}/>
                 </div>

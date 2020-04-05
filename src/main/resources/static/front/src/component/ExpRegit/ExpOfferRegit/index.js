@@ -121,7 +121,6 @@ export default class ExpOfferRegit extends Component {
     render() {
         return (
             <div className={styles.container}>
-                <div className={styles["top-block"]}></div>
                 <Nav cancel={window.close} submit={this.submit}/>
                 <Title label='제목'
                        placeHolder='제공하고 싶은 경험 제목을 입력해 주세요'
