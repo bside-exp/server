@@ -1,15 +1,17 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import styles from './index.module.css'
 import Profile from "./Profile";
 import {moveToOfferList, moveToOfferRegit, moveToRequestList, moveToRequestRegit} from "../../util/Location";
-import {getNewNoticeNum} from "../../util/Notice";
+import {getNewNoticeNum, getNotices, readNotices} from "../../util/Notice";
 
 export default class Sidebar extends Component {
 
     state = {
+        display: false,
         login: false,
         newNotice: 0,
-        notices: []
+        notices: [],
+        showNotice: false
     }
 
     defaultProps = {
@@ -18,6 +20,20 @@ export default class Sidebar extends Component {
 
     toggle = () => {
         this.props.toggle();
+        this.setState({
+            ...this.state,
+            display: !this.state.display
+        })
+    }
+
+    toggleNotice = () => {
+        if (this.state.newNotice)
+            readNotices()
+        this.setState({
+            ...this.state,
+            newNotice: 0,
+            showNotice: !this.state.showNotice
+        })
     }
 
     clickSidebar = (e) => {
@@ -39,6 +55,11 @@ export default class Sidebar extends Component {
         getNewNoticeNum().then(data => this.setState({
             ...this.state,
             newNotice: data
+        }))
+
+        getNotices().then(data => this.setState({
+            ...this.state,
+            notices: data
         }))
     }
 
@@ -64,6 +85,10 @@ export default class Sidebar extends Component {
             display: this.props.display ? 'inline' : 'none'
         }
 
+        const showNotice = {
+            display: this.state.showNotice ? 'inline' : 'none'
+        }
+
         let newNoticeNum = ''
         if (this.state.newNotice) {
             newNoticeNum = (
@@ -73,16 +98,39 @@ export default class Sidebar extends Component {
             )
         }
 
+        let notices = ''
+        if (this.state.notices.length) {
+            notices = this.state.notices.map(notice => {
+                const onClick = () => {
+                    if (notice.link)
+                        location.href = notice.link
+                }
+                return (
+                    <Fragment>
+                        <div className={styles['notice-line']}></div>
+                        <div onClick={onClick}>
+                            <span>{notice.title}</span>
+                            <span>{notice.content}</span>
+                        </div>
+                        <div className={styles['notice-line']}></div>
+                    </Fragment>
+                )
+            })
+        }
+
         return (
             <div className={styles.container} style={style} onClick={this.toggle}>
                 <div className={styles.sidebar} onClick={this.clickSidebar}>
                     <div className={styles.top}/>
                     <Profile/>
                     <div className={styles.line}/>
-                    <div id="알림" className={styles.con24}>
+                    <div id="알림" className={styles.con24} onClick={this.toggleNotice}>
                         <img src="/image/bell.svg" className={styles.icon}/>
                         <span className={styles.text}>알림</span>
                         {newNoticeNum}
+                    </div>
+                    <div className={styles.notices} style={showNotice}>
+                        {notices}
                     </div>
                     <div id="요청" className={styles.con24} onClick={moveToRequestRegit}>
                         <img src="/image/pencel.svg" className={styles.icon}/>

@@ -67,7 +67,7 @@ public class LinkService {
 
         CreateNoticeDto createNoticeDto = CreateNoticeDto.builder()
                 .title("경험 요청이 있습니다.")
-                .link("/exp_request/" + request.getId())
+                .link("/exp_requests/" + request.getId())
                 .build();
         noticeService.createNotice(offer.getUser().getId(), createNoticeDto);
     }
@@ -83,11 +83,11 @@ public class LinkService {
             link.setRequester(true);
             CreateNoticeDto noticeForRequester = CreateNoticeDto.builder()
                     .title("거래가 성사되었습니다.")
-                    .link("/exp_offer/" + offer.getId())
+                    .link("/exp_offers/" + offer.getId())
                     .build();
             CreateNoticeDto noticeForProvider = CreateNoticeDto.builder()
                     .title("거래가 성사되었습니다.")
-                    .link("/exp_request/" + request.getId())
+                    .link("/exp_requests/" + request.getId())
                     .build();
 
             noticeService.createNotice(request.getUser().getId(), noticeForRequester);
@@ -123,7 +123,7 @@ public class LinkService {
 
         CreateNoticeDto createNoticeDto = CreateNoticeDto.builder()
                 .title("경험 제공이 있습니다.")
-                .link("/exp_offer/" + offer.getId())
+                .link("/exp_offers/" + offer.getId())
                 .build();
         noticeService.createNotice(request.getUser().getId(), createNoticeDto);
     }
@@ -139,11 +139,11 @@ public class LinkService {
             link.setProvider(true);
             CreateNoticeDto noticeForRequester = CreateNoticeDto.builder()
                     .title("거래가 성사되었습니다.")
-                    .link("/exp_offer/" + offer.getId())
+                    .link("/exp_offers/" + offer.getId())
                     .build();
             CreateNoticeDto noticeForProvider = CreateNoticeDto.builder()
                     .title("거래가 성사되었습니다.")
-                    .link("/exp_request/" + request.getId())
+                    .link("/exp_requests/" + request.getId())
                     .build();
 
             noticeService.createNotice(request.getUser().getId(), noticeForRequester);
