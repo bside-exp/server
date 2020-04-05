@@ -7,12 +7,16 @@ export default class Nav extends Component {
         this.props.submit()
     }
 
+    back = () => {
+        history.back()
+    }
+
     render() {
 
 
         return (
             <nav className={styles.nav}>
-                <div className={styles["btn-box"]} onClick={this.props.cancel}>
+                <div className={styles["btn-box"]} onClick={this.back}>
                     <div className={styles["btn-table"]}>
                         <div className={styles.leftBtn}>취소</div>
                     </div>

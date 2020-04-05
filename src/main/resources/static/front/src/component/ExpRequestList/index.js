@@ -66,7 +66,6 @@ export default class ExpRequestList extends Component {
         return (
             <div className={styles.container}>
                 <Sidebar toggle={this.toggleSidebar} display={this.state.sidebar}/>
-                <div className={styles['top-block']}></div>
                 <NavBack style={styles.nav} right={this.toggleSidebar}>경험 요청</NavBack>
                 <div className={styles.list}>
                     {requests}

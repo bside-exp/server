@@ -134,7 +134,6 @@ export default class ExpRequest extends Component {
                 <LinkPopup requester={this.state.data.user} toggle={this.togglePopup} display={this.state.popup}
                            requestId={this.state.id} onFinish={this.getLinkAndSet}/>
                 <div className={styles.container}>
-                    <div className={styles['top-block']}></div>
                     <NavBack style={styles.nav} right={this.toggleSidebar}>모두의 경험</NavBack>
                     <div className={styles['top-box']}>
                         <div className={styles.title}>
